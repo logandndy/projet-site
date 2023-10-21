@@ -35,7 +35,7 @@
         
         <?php
 try {
-  $mysqlConnection = new PDO("mysql:host=localhost;dbname=garage_v_parrot", 'root', 'Frimous09000!');
+  $mysqlConnection = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
 } catch(PDOException $a) {
   echo "Erreur : " . $a->getMessage();
 }
@@ -54,18 +54,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
   
   if ($result) {
-    if ($result["type_utilisateur"] === "administrateur") {
-      $message = "Bienvenue Mr Parrot !";
-      header("Location: ./site_admin.php");
-      
+    if ($result["type_utilisateur"] === "administrateur" || $result["type_utilisateur"] === "employe") {
+        // Démarrez la session
+        session_start();
+
+        // Stockez des informations d'utilisateur dans la session
+        $_SESSION['utilisateur'] = $result["type_utilisateur"];
+
+        // Redirigez vers la page appropriée
+        if ($result["type_utilisateur"] === "administrateur") {
+            $redirectUrl = "./site_admin.php";
+        } else {
+            $redirectUrl = "./Boutique.html";
+        }
+
+        header("Location: " . $redirectUrl);
     } else {
-      $message = "Bienvenue !";
-      $redirectUrl = "./Boutique.html";
+        $message = "Identifiants incorrects.";
+        $redirectUrl = "page_connexion.html"; // Rediriger vers la page de connexion en cas d'échec
     }
-  } else {
-    $message = "Identifiants incorrects.";
-    $redirectUrl = "page_connexion.html"; // Rediriger vers la page de connexion en cas d'échec
-  }
+}
 }
 
 if (isset($message)) { ?>
