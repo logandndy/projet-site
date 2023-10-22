@@ -12,12 +12,12 @@
     </div>
     <nav class="navbar">
       <div>
-        <a href="connexion.html">connexion</a>
+        <a href="connexion.php">connexion</a>
       </div>
         <ul>
-          <li><a href="./Boutique.html">Boutique</a></li>
-          <li><a href="./service.html">Service</a></li>
-          <li><a href="./Contact.html">Contact</a></li>
+          <li><a href="./Boutique.php">Boutique</a></li>
+          <li><a href="./service.php">Service</a></li>
+        <li><a href="./Contact.php">Contact</a></li>
         </ul>
       </div>
     </nav>
@@ -71,56 +71,40 @@
         </ul>
       </div>
       <div>
-        <p>Horaire d'ouverture : <br>
-          <br>
-        lun: 08:45-12:00, 14:00-18:00 <br>
-        mar: 08:45-12:00, 14:00-18:00 <br>
-        mer: 08:45-12:00, 14:00-18:00 <br>
-        jeu: 08:45-12:00, 14:00-18:00 <br>
-        ven: 08:45-12:00, 14:00-18:00 <br>
-        sam: 08:45-12:00,<br>
-        dim: Fermé
-        </p>
+      <?php
+try {
+  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+} catch (PDOException $e) {
+  echo "Erreur : " . $e->getMessage();
+}
+
+$sql = 'SELECT jour_semaine, heure_matin, heure_matin2, heure_aprem, heure_aprem2 FROM horaires ORDER BY FIELD(jour_semaine, "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche")';
+$stmt = $pdo->query($sql);
+
+// Vérifiez si la requête a réussi
+if ($stmt) {
+  // Récupérez les données et affichez-les (ou utilisez-les comme nécessaire)
+  echo "<p>Horaire d'ouverture : <br>";
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      $jour_semaine = $row['jour_semaine'];
+      $heure_matin = $row['heure_matin'];
+      $heure_matin2 = $row['heure_matin2'];
+      $heure_aprem = $row['heure_aprem'];
+      $heure_aprem2 = $row['heure_aprem2'];
+
+      // Afficher les données
+      echo $jour_semaine . " : " . $heure_matin . " - " . $heure_matin2 . " / " . $heure_aprem . " - " . $heure_aprem2 . "<br>";
+
+     
+  }
+  echo "</p>";
+} else {
+  echo "Erreur lors de la récupération des données.";
+}
+
+?>
       </div>
     </footer>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
 </body>
 <script src="script.js"></script>
 </html>

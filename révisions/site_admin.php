@@ -15,16 +15,16 @@
         <a href="./connexion.php">connexion</a>
       </div>
         <ul>
-          <li><a href="./Boutique.html">Boutique</a></li>
-          <li><a href="./service.html">Service</a></li>
-          <li><a href="./Contact.html">Contact</a></li>
+          <li><a href="./Boutique.php">Boutique</a></li>
+          <li><a href="./service.php">Service</a></li>
+          <li><a href="./Contact.php">Contact</a></li>
         </ul>
       </div>
     </nav>
   </header>
     <main>
       <div class="titre">
-        <h1>Garage V.Parrot sqdqsd s</h1>
+        <h1>Garage V.Parrot</h1>
         <p>(entretien véhicule, vente de véhicule neuf et occasion)</p>
       </div>
       <div class="proposition">
@@ -70,18 +70,56 @@
           <li>tél : 06 06 06 06 06</li>
         </ul>
       </div>
+      
+      
       <div>
-        <p>Horaire d'ouverture : <br>
-          <br>
-        lun: 08:45-12:00, 14:00-18:00 <br>
-        mar: 08:45-12:00, 14:00-18:00 <br>
-        mer: 08:45-12:00, 14:00-18:00 <br>
-        jeu: 08:45-12:00, 14:00-18:00 <br>
-        ven: 08:45-12:00, 14:00-18:00 <br>
-        sam: 08:45-12:00<br>
-        dim: Fermé
-        </p>
+      <?php
+try {
+  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+} catch (PDOException $e) {
+  echo "Erreur : " . $e->getMessage();
+}
+
+$sql = 'SELECT jour_semaine, heure_matin, heure_matin2, heure_aprem, heure_aprem2 FROM horaires ORDER BY FIELD(jour_semaine, "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche")';
+$stmt = $pdo->query($sql);
+
+// Vérifiez si la requête a réussi
+if ($stmt) {
+  // Récupérez les données et affichez-les (ou utilisez-les comme nécessaire)
+  echo "<p>Horaire d'ouverture : <br>";
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      $jour_semaine = $row['jour_semaine'];
+      $heure_matin = $row['heure_matin'];
+      $heure_matin2 = $row['heure_matin2'];
+      $heure_aprem = $row['heure_aprem'];
+      $heure_aprem2 = $row['heure_aprem2'];
+
+      // Afficher les données
+      echo $jour_semaine . " : " . $heure_matin . " - " . $heure_matin2 . " / " . $heure_aprem . " - " . $heure_aprem2 . "<br>";
+
+      // Afficher un formulaire pour modifier les horaires
+      echo "<form action='update_horaires.php' method='post'>";
+      echo "<input type='hidden' name='jour_semaine' value='{$jour_semaine}'>";
+      echo "<label for='heure_matin'>Heure du matin :</label>";
+      echo "<input type='time' id='heure_matin' name='heure_matin' value='{$heure_matin}'>";
+      echo "<input type='time' id='heure_matin2' name='heure_matin2' value='{$heure_matin2}'>";
+      echo "<label for='heure_aprem'>Heure de l'après-midi :</label>";
+      echo "<input type='time' id='heure_aprem' name='heure_aprem' value='{$heure_aprem}'>";
+      echo "<input type='time' id='heure_aprem2' name='heure_aprem2' value='{$heure_aprem2}'>";
+      echo "<input type='submit' value='Mettre à jour'>";
+      echo "</form>";
+  }
+  echo "</p>";
+} else {
+  echo "Erreur lors de la récupération des données.";
+}
+
+?>
+
+        
+      
       </div>
+      
     </footer>
 </body>
 <script src="script.js"></script>

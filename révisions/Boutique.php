@@ -8,13 +8,13 @@
 <body>
     <header>
         <div class="logo">
-          <a href="./site.html"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
+          <a href="./site.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
         </div>
         <nav>
           <ul>
-            <li><a href="./Boutique.html">Boutique</a></li>
-            <li><a href="./service.html">Service</a></li>
-            <li><a href="./Contact.html">Contact</a></li>
+            <li><a href="./Boutique.php">Boutique</a></li>
+            <li><a href="./service.php">Service</a></li>
+            <li><a href="./Contact.php">Contact</a></li>
           </ul>
         </nav>
     </header>
@@ -325,16 +325,38 @@
             </ul>
           </div>
           <div>
-            <p>Horaire d'ouverture : <br>
-                <br>
-                lun: 08:45-12:00, 14:00-18:00 <br>
-                mar: 08:45-12:00, 14:00-18:00 <br>
-                mer: 08:45-12:00, 14:00-18:00 <br>
-                jeu: 08:45-12:00, 14:00-18:00 <br>
-                ven: 08:45-12:00, 14:00-18:00 <br>
-                sam: 08:45-12:00,<br>
-                dim: Fermé
-                </p>
+          <?php
+try {
+  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+} catch (PDOException $e) {
+  echo "Erreur : " . $e->getMessage();
+}
+
+$sql = 'SELECT jour_semaine, heure_matin, heure_matin2, heure_aprem, heure_aprem2 FROM horaires ORDER BY FIELD(jour_semaine, "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche")';
+$stmt = $pdo->query($sql);
+
+// Vérifiez si la requête a réussi
+if ($stmt) {
+  // Récupérez les données et affichez-les (ou utilisez-les comme nécessaire)
+  echo "<p>Horaire d'ouverture : <br>";
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      $jour_semaine = $row['jour_semaine'];
+      $heure_matin = $row['heure_matin'];
+      $heure_matin2 = $row['heure_matin2'];
+      $heure_aprem = $row['heure_aprem'];
+      $heure_aprem2 = $row['heure_aprem2'];
+
+      // Afficher les données
+      echo $jour_semaine . " : " . $heure_matin . " - " . $heure_matin2 . " / " . $heure_aprem . " - " . $heure_aprem2 . "<br>";
+
+      
+  }
+  echo "</p>";
+} else {
+  echo "Erreur lors de la récupération des données.";
+}
+
+?>
           </div>
         </footer>
         <script src="script.js"></script>

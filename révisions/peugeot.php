@@ -8,13 +8,13 @@
 <body>
   <header>
     <div class="logo">
-     <a href="./site.html"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a> 
+     <a href="./site.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a> 
     </div>
     <nav>
       <ul>
-        <li><a href="./Boutique.html">Boutique</a></li>
-        <li><a href="./service.html">Service</a></li>
-        <li><a href="./Contact.html">Contact</a></li>
+        <li><a href="./Boutique.php">Boutique</a></li>
+        <li><a href="./service.php">Service</a></li>
+        <li><a href="./Contact.php">Contact</a></li>
       </ul>
     </nav>
     <main class="peugeot">
