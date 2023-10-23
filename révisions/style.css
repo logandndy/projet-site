@@ -20,14 +20,6 @@ nav {
   padding: 30px;
   font-size: 20px;
 }
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  background-color: black;
-  color: white;
-  padding: 30px;
-  font-size: 20px;
-}
 nav ul {
   list-style: none;
 }
@@ -36,7 +28,6 @@ nav a {
   color: inherit;
 }
 nav ul li {
-  display: inline;
   padding-left: 35px;
   padding-right: 25px;
 }

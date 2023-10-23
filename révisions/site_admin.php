@@ -10,16 +10,29 @@
     <div class="logo">
       <img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo">
     </div>
-    <nav class="navbar">
-      <div>
-        <a href="./connexion.php">connexion</a>
-      </div>
+    <nav>
+      
         <ul>
+          <li><?php
+   session_start();
+   if (isset($_SESSION["utilisateur"])) {
+   ?>
+     <form method="post" action="logout.php">
+       <input class="deconnexion" type="submit" value="Déconnexion">
+     </form>
+   <?php
+   } else {
+   ?>
+     <form method="post" action="connexion.php">
+       <input class="connexion" type="submit" value="Connexion">
+     </form>
+   <?php
+   }
+   ?></li>
           <li><a href="./Boutique.php">Boutique</a></li>
           <li><a href="./service.php">Service</a></li>
           <li><a href="./Contact.php">Contact</a></li>
         </ul>
-      </div>
     </nav>
   </header>
     <main>

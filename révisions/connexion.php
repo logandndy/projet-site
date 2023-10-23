@@ -58,6 +58,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Démarrez la session
         session_start();
 
+        // Récupérez les informations de connexion de l'utilisateur
+   $email = $_POST["email"];
+   $mdp = $_POST["mot_de_passe"];
+
         // Stockez des informations d'utilisateur dans la session
         $_SESSION['utilisateur'] = $result["type_utilisateur"];
 
@@ -65,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($result["type_utilisateur"] === "administrateur") {
             $redirectUrl = "./site_admin.php";
         } else {
-            $redirectUrl = "./Boutique.html";
+            $redirectUrl = "./Boutique.php";
         }
 
         header("Location: " . $redirectUrl);

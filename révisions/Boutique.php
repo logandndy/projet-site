@@ -12,6 +12,16 @@
         </div>
         <nav>
           <ul>
+          <?php
+   session_start();
+   if (isset($_SESSION["utilisateur"])) {
+   ?>
+     <form method="post" action="logout.php">
+       <input type="submit" value="Déconnexion">
+     </form>
+   <?php
+   }
+   ?>
             <li><a href="./Boutique.php">Boutique</a></li>
             <li><a href="./service.php">Service</a></li>
             <li><a href="./Contact.php">Contact</a></li>
@@ -357,6 +367,9 @@ if ($stmt) {
 }
 
 ?>
+      
+
+
           </div>
         </footer>
         <script src="script.js"></script>
