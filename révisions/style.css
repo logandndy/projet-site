@@ -14,11 +14,14 @@ body {
 }
 nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   background-color: black;
   color: white;
   padding: 30px;
   font-size: 20px;
+}
+.inputs {
+  text-align: left;
 }
 nav ul {
   list-style: none;
