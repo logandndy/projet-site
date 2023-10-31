@@ -23,6 +23,10 @@ nav {
 .inputs {
   text-align: left;
 }
+.links li {
+  display: flex;
+  align-items: center;
+}
 nav ul {
   list-style: none;
 }
@@ -84,6 +88,9 @@ nav ul li {
 }
 .service ul li {
   list-style: none;
+}
+.formAvis {
+  border-top: 2px solid black;
 }
 .formAvis,
 .formAvis form {

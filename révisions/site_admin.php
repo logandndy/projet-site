@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -32,6 +33,7 @@
           <li><a href="./Boutique.php">Boutique</a></li>
           <li><a href="./service.php">Service</a></li>
           <li><a href="./Contact.php">Contact</a></li>
+          <li><a href="./adminside.php">Administration</a></li>
         </ul>
     </nav>
   </header>
@@ -71,6 +73,7 @@
                 <label for="star1"><img src="/photo/etoile.png" alt="Étoile vide"></label>
             </div>
         </div>
+  
           
           <button type="submit" name="submit">Envoyer</button>
         </form>
