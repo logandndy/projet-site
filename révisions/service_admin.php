@@ -8,7 +8,7 @@
 <body>
   <header>
     <div class="logo">
-     <a href="./site.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a> 
+     <a href="./site_admin.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a> 
     </div>
     <nav>
       <ul>
@@ -22,9 +22,10 @@
    <?php
    }
    ?>
-        <li><a href="./Boutique.php">Boutique</a></li>
-        <li><a href="./service.php">Service</a></li>
+        <li><a href="./Boutique_admin.php">Boutique</a></li>
+        <li><a href="./service_admin.php">Service</a></li>
         <li><a href="./Contact.php">Contact</a></li>
+        <li><a href="./adminside.php">Administration</a></li>
       </ul>
     </nav>
     <main>
@@ -33,8 +34,7 @@
         </div>
         <div class="servPlan">
             <div class="mesServices">
-                <h2>Mes services :</h2><br>
-                <?php
+            <?php
 // Connexion à la base de données
 $db = new PDO('mysql:host=localhost;dbname=projetgarage;charset=utf8', 'root', '');
 
@@ -43,9 +43,35 @@ $services = $db->query('SELECT * FROM services')->fetchAll(PDO::FETCH_ASSOC);
 
 // Affichage des services
 foreach ($services as $service) {
- echo '<p>' . $service['name'] . '</p>';
+  echo '<p>' . $service['name'] . '</p>';
+}
+
+// Gestion des services
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $name = $_POST['name'];
+  $action = $_POST['action'];
+
+  if ($action === 'add') {
+      $db->exec("INSERT INTO services (name) VALUES ('$name')");
+  } elseif ($action === 'delete') {
+      $db->exec("DELETE FROM services WHERE name = '$name'");
+  }
 }
 ?>
+
+<!-- Formulaire pour ajouter un service -->
+<form method="post">
+  <input type="text" name="name" placeholder="Nom du service">
+  <input type="hidden" name="action" value="add">
+  <button type="submit">Ajouter un service</button>
+</form>
+
+<!-- Formulaire pour supprimer un service -->
+<form method="post">
+  <input type="text" name="name" placeholder="Nom du service à supprimer">
+  <input type="hidden" name="action" value="delete">
+  <button type="submit">Supprimer un service</button>
+</form>
 
             </div>
             <div class="horaire">

@@ -67,9 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Redirigez vers la page appropriée
         if ($result["type_utilisateur"] === "administrateur") {
-            $redirectUrl = "./site_admin.php";
+            $redirectUrl = "./page_admin/site_admin.php";
         } else {
-            $redirectUrl = "./Boutique.php";
+            $redirectUrl = "./Boutique_employe.php";
         }
 
         header("Location: " . $redirectUrl);

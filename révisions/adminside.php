@@ -8,7 +8,7 @@
 <body>
   <header>
     <div class="logo">
-     <a href="./site.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a> 
+     <a href="./site_admin.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a> 
     </div>
     <nav>
       <ul>
@@ -22,8 +22,8 @@
    <?php
    }
    ?>
-        <li><a href="./Boutique.php">Boutique</a></li>
-        <li><a href="./service.php">Service</a></li>
+        <li><a href="./Boutique_admin.php">Boutique</a></li>
+        <li><a href="./service_admin.php">Service</a></li>
         <li><a href="./Contact.php">Contact</a></li>
       </ul>
     </nav>

@@ -9,7 +9,7 @@
 <body>
   <header>
     <div class="logo">
-      <img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo">
+    <a href="./site_admin.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
     </div>
     <nav>
       
@@ -30,8 +30,8 @@
    <?php
    }
    ?></li>
-          <li><a href="./Boutique.php">Boutique</a></li>
-          <li><a href="./service.php">Service</a></li>
+          <li><a href="./Boutique_admin.php">Boutique</a></li>
+          <li><a href="./service_admin.php">Service</a></li>
           <li><a href="./Contact.php">Contact</a></li>
           <li><a href="./adminside.php">Administration</a></li>
         </ul>
