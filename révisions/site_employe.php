@@ -66,13 +66,62 @@
           <label for="note">Note:</label>
           <div class="rating">
 <input type="number" id="note" name="note" min="1" max="5">
-
         </div>
           
           <button type="submit" name="submit">Envoyer</button>
         </form>
       </div>
-      
+      <?php
+// Connexion à la base de données
+$hostName = "localhost";
+$userName = "root";
+$password = "";
+$databaseName = "projetgarage";
+$conn = new mysqli($hostName, $userName, $password, $databaseName);
+
+// Vérification de la connexion
+if ($conn->connect_error) {
+ die("Connection failed: " . $conn->connect_error);
+}
+
+// Requête pour récupérer les avis
+$query = "SELECT * FROM avis";
+$result = mysqli_query($conn, $query);
+?>
+
+<table border ="1" cellspacing="0" cellpadding="10">
+ <tr>
+  <th>ID</th>
+  <th>Nom</th>
+  <th>Message</th>
+  <th>Note</th>
+  <th>Supprimer</th>
+  <th>Afficher</th>
+ </tr>
+<?php
+// Affichage des avis
+if (mysqli_num_rows($result) > 0) {
+ while($data = mysqli_fetch_assoc($result)) {
+ ?>
+ <tr>
+  <td><?php echo $data['id']; ?> </td>
+  <td><?php echo $data['nom']; ?> </td>
+  <td><?php echo $data['commentaire']; ?> </td>
+  <td><?php echo $data['note']; ?> </td>
+  <td><a href="delete.php?id=<?php echo $data['id']; ?>" title='Delete Record'><i class='material-icons'><i class='material-icons'></i></i></a></td>
+ <tr>
+ <?php
+ }
+} else {
+ echo "<tr><td colspan='5'>No data found</td></tr>";
+}
+?>
+</table>
+<?php
+// Fermeture de la connexion
+$conn->close();
+?>
+
     <footer>
       <div class="contact">
         <p>Contact :</p>

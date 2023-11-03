@@ -13,17 +13,15 @@ if ($conn->connect_error) {
  die("Connection failed: " . $conn->connect_error);
 }
 
-// Récupérer les données du formulaire
-$nom = $_POST['nom'];
-$commentaire = $_POST['commentaire'];
-$note = $_POST['note'];
+// Récupérer l'ID de l'avis à supprimer
+$id = $_POST['id'];
 
 // Préparer une requête SQL
-$sql = "INSERT INTO Avis (nom, commentaire, note) VALUES ('$nom', '$commentaire', '$note')";
+$sql = "DELETE FROM avis WHERE id=$id";
 
 // Exécuter la requête
 if ($conn->query($sql) === TRUE) {
- echo "Avis enregistré avec succès";
+ echo "Avis supprimé avec succès";
 } else {
  echo "Erreur: " . $sql . "<br>" . $conn->error;
 }
@@ -31,4 +29,3 @@ if ($conn->query($sql) === TRUE) {
 // Fermer la connexion
 $conn->close();
 ?>
-
