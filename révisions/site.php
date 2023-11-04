@@ -72,7 +72,58 @@
           <button type="submit" name="submit">Envoyer</button>
         </form>
       </div>
-      
+      <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Connexion à la base de données
+$hostName = "localhost";
+$userName = "root";
+$password = "";
+$databaseName = "projetgarage";
+$conn = new mysqli($hostName, $userName, $password, $databaseName);
+
+// Vérification de la connexion
+if ($conn->connect_error) {
+ die("Connection failed: " . $conn->connect_error);
+}
+
+// Récupération de l'ID de l'avis à partir de l'URL
+$id = $_GET['id'] ?? null;
+
+if ($id !== null) {
+   // Récupération de l'avis à partir de la base de données
+   $query = "SELECT * FROM avis WHERE id = $id";
+   $result = mysqli_query($conn, $query);
+   $data = mysqli_fetch_assoc($result);
+   
+   // Stocker l'avis dans la session
+   $_SESSION['avis'] = $data;
+   
+   // Affichage de l'avis
+   echo "<div class='avis'>";
+   echo "<h2>" . $data['nom'] . "</h2>";
+   echo "<p>" . $data['commentaire'] . "</p>";
+   echo "<p>" . $data['note'] . "</p>";
+   echo "</div>";
+} else {
+   // Récupération de l'avis de la session
+if (isset($_SESSION['avis_visible'])) {
+  $data = $_SESSION['avis_visible'];
+
+  // Affichage de l'avis
+  echo "<div class='avis'>";
+  echo "<h2>" . $data['nom'] . "</h2>";
+  echo "<p>" . $data['commentaire'] . "</p>";
+  echo "<p>" . $data['note'] . "</p>";
+  echo "</div>";
+} else {
+  echo "Aucun avis sélectionné";
+}
+}
+?>
+
     <footer>
       <div class="contact">
         <p>Contact :</p>
