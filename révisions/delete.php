@@ -19,7 +19,7 @@ $sql = "DELETE FROM avis WHERE id=$id";
 
 // Exécution de la requête
 if ($conn->query($sql) === TRUE) {
- echo "Record deleted successfully";
+    header('Location: site_employe.php');
 } else {
  echo "Error deleting record: " . $conn->error;
 }

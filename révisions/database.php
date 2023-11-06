@@ -23,7 +23,7 @@ $sql = "INSERT INTO Avis (nom, commentaire, note) VALUES ('$nom', '$commentaire'
 
 // Exécuter la requête
 if ($conn->query($sql) === TRUE) {
- echo "Avis enregistré avec succès";
+    header('Location: site.php');
 } else {
  echo "Erreur: " . $sql . "<br>" . $conn->error;
 }

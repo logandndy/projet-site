@@ -30,51 +30,48 @@
     </header>
         <main class="mainBoutique">
           <div class="neufoccas">
-            <p>Véhicule neufs</p>
-            <p>Véhicule occasions</p>
+            <p>Véhicule neufs et Véhicule occasions</p>
           </div>
          
-          <div class="Vente">
-            <div class="neuf">
-                <div>
-                    <img src="/photo/peugeot 3008.jpg" alt="voiture">
-                    <div class="para">
-                        <p>
-                            <ul>
-                                <li>Peugeot 3008</li>
-                                <li>2022</li>
-                                <li>0km</li>
-                                <li>51 000€</li>
-                            </ul>
-                        </p>
-                        <p><a href="#" onclick="toggleDescription('description1')">Détails</a></p>
-                        <div class="description" id="description1" style="display: none;">
-                            <span class="close" onclick="toggleDescription('description1')">X</span>
-                            <!-- Contenu de la description -->
-                            <h2>Peugeot 3008</h2>
-                            <p>Caractéristiques <br>
-                                Année :
-                                2022 <br>
-                                Provenance :
-                                Importé  <br>
-                                Mise en circulation :
-                                25/02/2022 <br>
-                                Contrôle technique :
-                                Non requis <br> 
-                                Première main :
-                                Non <br> 
-                                Kilométrage compteur :
-                                0 km <br>
-                                Energie :
-                                Diesel <br>
-                                Boite de vitesse :
-                                Automatique <br>
-                                Couleur :noir <br>
-                                Nombre de portes :
-                                5 </p>
-                            
-                        </div>
-                    </div>
+          <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
+          <?php
+$host='localhost';
+$username='root';
+$password='';
+$dbname = "projetgarage";
+$conn=mysqli_connect($host,$username,$password,"$dbname");
+if(!$conn)
+    {
+      die('Could not Connect MySql Server:' .mysql_error());
+    }
+
+    $query = "SELECT * FROM voitures where id = 1";
+$result = mysqli_query($conn, $query);
+
+$query2 = "SELECT * FROM images where id = 1";
+$result2 = mysqli_query($conn, $query2);
+
+if (mysqli_num_rows($result) > 0) {
+  $data = mysqli_fetch_assoc($result);
+  $image = mysqli_fetch_assoc($result2);
+?>
+<div style="display: flex; align-items: center;justify-content: center;">
+  <div>
+    <img src="./upload/<?php echo $image['file']; ?>" alt="Image" width="300" height="250" style="border-radius: 50%;
+  box-shadow: 0px 0px 10px 0px;">
+  </div>
+  <div style="margin-left: 20px;">
+    <p>Etat : </p><p><?php echo $data['ETAT']; ?></p><br>
+    <p>Nom : </p><p><?php echo $data['NOM']; ?></p><br>
+    <p>Année : </p><p><?php echo $data['mise_circulation']; ?></p><br>
+    <p>Kilométres :</p><p><?php echo $data['km']; ?></p><br>
+    <p>Prix : </p><p><?php echo $data['prix']; ?></p>
+  </div>
+</div>
+<?php
+} else { ?>
+  <p>No data found</p>
+<?php } ?>
                     <div class="formulaire">
                         <form>
                           <div>
@@ -103,51 +100,46 @@
                         </form>
                       </div>
                 </div>
-                <div>
-                    <img src="/photo/Opel mokka.jpg" alt="voiture">
-                    <div class="para">
-                        <p>
-                            <ul>
-                                <li>OPEL MOKKA</li>
-                                <li>2021</li>
-                                <li>0km</li>
-                                <li>24 000€</li>
-                            </ul>
-                        </p>
-                        <p><a href="#" onclick="toggleDescription('description2')">Détails</a></p>
-                        <div class="description" id="description2" style="display: none;">
-                            <span class="close" onclick="toggleDescription('description2')">X</span>
-                                <!-- Contenu de la description -->
-                            <h2>OPEL MOKKA</h2>
-                            <p>Caractéristiques <br>
-                                Année :
-                                2021 <br>
-                                Provenance :
-                                France <br>
-                                Mise en circulation :
-                                30/11/2021 <br>
-                                Contrôle technique :
-                                Non requis  <br>
-                                Première main :
-                                Non  <br>
-                                Kilométrage compteur :
-                                0 km <br>
-                                Energie :
-                                Diesel <br>
-                                Boite de vitesse :
-                                Manuelle <br>
-                                Couleur :rouge <br>
-                                Nombre de portes :
-                                5 <br>
-                                Nombre de places :
-                                5 <br>
-                                Longueur :
-                                4,15 m <br>
-                                Volume de coffre :
-                                Petit coffre </p>
-                        </div>
-                    </div>
-                </div>
+                <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
+                <?php
+$host='localhost';
+$username='root';
+$password='';
+$dbname = "projetgarage";
+$conn=mysqli_connect($host,$username,$password,"$dbname");
+if(!$conn)
+    {
+      die('Could not Connect MySql Server:' .mysql_error());
+    }
+
+    $query = "SELECT * FROM voitures where id = 2";
+$result = mysqli_query($conn, $query);
+
+$query2 = "SELECT * FROM images where id = 2";
+$result2 = mysqli_query($conn, $query2);
+
+if (mysqli_num_rows($result) > 0) {
+  $data = mysqli_fetch_assoc($result);
+  $image = mysqli_fetch_assoc($result2);
+?>
+<div style="display: flex; align-items: center;justify-content: center;">
+  <div>
+  <img src="./upload/<?php echo $image['file']; ?>" alt="Image" width="300" height="250" style="border-radius: 50%;
+  box-shadow: 0px 0px 10px 0px;">
+  </div>
+  <div style="margin-left: 20px;">
+    <p>Etat : </p><p><?php echo $data['ETAT']; ?></p><br>
+    <p>Nom : </p><p><?php echo $data['NOM']; ?></p><br>
+    <p>Année : </p><p><?php echo $data['mise_circulation']; ?></p><br>
+    <p>Kilométres :</p><p><?php echo $data['km']; ?></p><br>
+    <p>Prix : </p><p><?php echo $data['prix']; ?></p>
+  </div>
+</div>
+<?php
+} else { ?>
+  <p>No data found</p>
+<?php } ?>
+</div>
                 <div class="formulaire">
                     <form>
                       <div>
@@ -176,53 +168,46 @@
                     </form>
                   </div>
             </div>
-            <div class="occas">
-                <div>
-                    <img src="/photo/citroen.jpg" alt="voiture">
-                    <div class="para">
-                        <p>
-                            <ul>
-                                <li>Citroen C3</li>
-                                <li>2021</li>
-                                <li>25 020km</li>
-                                <li>16 200€</li>
-                            </ul>
-                        </p>
-                        <p><a href="#" onclick="toggleDescription('description3')">Détails</a></p>
-                        <div class="description" id="description3" style="display: none;">
-                            <span class="close" onclick="toggleDescription('description3')">X</span>
-                                <!-- Contenu de la description -->
-                            <h2>Citroen C3</h2>
-                            <p>Caractéristiques <br>
-                                Année :
-                                2021 <br>
-                                Provenance :
-                                France <br>
-                                Mise en circulation :
-                                01/03/2021 <br>
-                                Contrôle technique :
-                                Non requis <br> 
-                                Première main :
-                                Non <br> 
-                                Kilométrage compteur :
-                                25 020 km <br>
-                                Energie :
-                                Essence <br>
-                                Boite de vitesse :
-                                Manuelle <br>
-                                Couleur :blanc/toit rouge <br>
-                                Nombre de portes :
-                                5 <br>
-                                Nombre de places :
-                                5 <br>
-                                Longueur :
-                                4 m <br>
-                                Volume de coffre :
-                                Grand coffre </p>
-                            
-                        </div>
-                    </div>
-                </div>
+            <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
+            <?php
+$host='localhost';
+$username='root';
+$password='';
+$dbname = "projetgarage";
+$conn=mysqli_connect($host,$username,$password,"$dbname");
+if(!$conn)
+    {
+      die('Could not Connect MySql Server:' .mysql_error());
+    }
+
+    $query = "SELECT * FROM voitures where id = 3";
+$result = mysqli_query($conn, $query);
+
+$query2 = "SELECT * FROM images where id = 3";
+$result2 = mysqli_query($conn, $query2);
+
+if (mysqli_num_rows($result) > 0) {
+  $data = mysqli_fetch_assoc($result);
+  $image = mysqli_fetch_assoc($result2);
+?>
+<div style="display: flex; align-items: center;justify-content: center;">
+  <div>
+  <img src="./upload/<?php echo $image['file']; ?>" alt="Image" width="300" height="250" style="border-radius: 50%;
+  box-shadow: 0px 0px 10px 0px;">
+  </div>
+  <div style="margin-left: 20px;">
+    <p>Etat : </p><p><?php echo $data['ETAT']; ?></p><br>
+    <p>Nom : </p><p><?php echo $data['NOM']; ?></p><br>
+    <p>Année : </p><p><?php echo $data['mise_circulation']; ?></p><br>
+    <p>Kilométres :</p><p><?php echo $data['km']; ?></p><br>
+    <p>Prix : </p><p><?php echo $data['prix']; ?></p>
+  </div>
+</div>
+<?php
+} else { ?>
+  <p>No data found</p>
+<?php } ?>
+</div>
                 <div class="formulaire">
                     <form>
                       <div>
@@ -250,52 +235,46 @@
                       </div>
                     </form>
                   </div>
-                <div>
-                    <img src="/photo/AUDI.jpg" alt="voiture">
-                    <div class="para">
-                        <p>
-                            <ul>
-                                <li>AUDI Q2</li>
-                                <li>2021</li>
-                                <li>14 271km</li>
-                                <li>25 990€</li>
-                            </ul>
-                        </p>
-                        <p><a href="#" onclick="toggleDescription('description4')">Détails</a></p>
-                        <div class="description" id="description4" style="display: none;">
-                            <span class="close" onclick="toggleDescription('description4')">X</span>
-                                <!-- Contenu de la description -->
-                            <h2>AUDI Q2</h2>
-                            <p>Caractéristiques <br>
-                                Année :
-                                2021 <br>
-                                Provenance :
-                                France <br>
-                                Mise en circulation :
-                                15/09/2021 <br>
-                                Contrôle technique :
-                                Non requis <br> 
-                                Première main :
-                                Oui <br> 
-                                Kilométrage compteur :
-                                14 271 km <br>
-                                Energie :
-                                Essence <br>
-                                Boite de vitesse :
-                                Manuelle <br>
-                                Couleur :argent <br>
-                                Nombre de portes :
-                                5 <br>
-                                Nombre de places :
-                                5 <br>
-                                Longueur :
-                                4,21 m <br>
-                                Volume de coffre :
-                                Moyen Coffre </p>
-                            
-                        </div>
-                    </div>
-                </div>
+                  <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
+                  <?php
+$host='localhost';
+$username='root';
+$password='';
+$dbname = "projetgarage";
+$conn=mysqli_connect($host,$username,$password,"$dbname");
+if(!$conn)
+    {
+      die('Could not Connect MySql Server:' .mysql_error());
+    }
+
+    $query = "SELECT * FROM voitures where id = 4";
+$result = mysqli_query($conn, $query);
+
+$query2 = "SELECT * FROM images where id = 4";
+$result2 = mysqli_query($conn, $query2);
+
+if (mysqli_num_rows($result) > 0) {
+  $data = mysqli_fetch_assoc($result);
+  $image = mysqli_fetch_assoc($result2);
+?>
+<div style="display: flex; align-items: center;justify-content: center;">
+  <div>
+  <img src="./upload/<?php echo $image['file']; ?>" alt="Image" width="300" height="250" style="border-radius: 50%;
+  box-shadow: 0px 0px 10px 0px;">
+  </div>
+  <div style="margin-left: 20px;">
+    <p>Etat : </p><p><?php echo $data['ETAT']; ?></p><br>
+    <p>Nom : </p><p><?php echo $data['NOM']; ?></p><br>
+    <p>Année : </p><p><?php echo $data['mise_circulation']; ?></p><br>
+    <p>Kilométres :</p><p><?php echo $data['km']; ?></p><br>
+    <p>Prix : </p><p><?php echo $data['prix']; ?></p>
+  </div>
+</div>
+<?php
+} else { ?>
+  <p>No data found</p>
+<?php } ?>
+</div>
                 <div class="formulaire">
                     <form>
                       <div>

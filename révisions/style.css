@@ -154,10 +154,10 @@ footer a {
 .neufoccas {
   display: flex;
   font-size: 30px;
-  justify-content: space-around;
   padding-top: 30px;
   margin-bottom: 20px;
   font-weight: bold;
+  justify-content: center;
 }
 
 .neuf {
