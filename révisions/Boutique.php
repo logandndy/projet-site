@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Boutique</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
     <header>
@@ -30,9 +32,86 @@
     </header>
         <main class="mainBoutique">
           <div class="neufoccas">
-            <p>Véhicule neufs et Véhicule occasions</p>
+            <p>Véhicule d'occasions</p>
           </div>
+         <br>
          
+         <form id="filterForm">
+    <label for="minPrice">Prix min :</label>
+    <input type="number" id="minPrice" name="minPrice">
+
+    <label for="maxPrice">Prix max :</label>
+    <input type="number" id="maxPrice" name="maxPrice">
+
+    <label for="minYear">Année min :</label>
+    <input type="number" id="minYear" name="minYear">
+
+    <label for="maxKm">Kilomètres max :</label>
+    <input type="number" id="maxKm" name="maxKm">
+
+    <input type="submit" value="Filtrer">
+</form>
+
+<div id="results"></div>
+
+
+    <div id="results"></div>
+
+    <script>
+    $(document).ready(function(){
+    $('#filterForm').on('submit', function(event){ 
+        event.preventDefault();
+        $.ajax({
+            type: "POST", 
+            url: "filtre.php", 
+            data: {
+                minPrice: $('#minPrice').val(),
+                maxPrice: $('#maxPrice').val(),
+                minYear: $('#minYear').val(),
+                maxKm: $('#maxKm').val(),
+            },
+            success: function(result){ 
+                var cars = JSON.parse(result);
+                $('#results').empty();
+                cars.forEach(function(car) {
+                    var div = $('<div>').css({
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center'
+                    });
+                    var imgDiv = $('<div>');
+                    var img = $('<img>').attr('src', './upload/' + car['file']).attr('alt', 'Image').attr('width', '300').attr('height', '250').css({
+                        borderRadius: '50%',
+                        boxShadow: '0px 0px 10px 0px'
+                    });
+                    var pDiv = $('<div>').css('margin-left', '20px');
+                    var p = $('<p>').text('Etat : ');
+                    p.append($('<p>').text(car['ETAT']));
+                    p.append($('<p>').text('Nom : '));
+                    p.append($('<p>').text(car['NOM']));
+                    p.append($('<p>').text('Année : '));
+                    p.append($('<p>').text(car['mise_circulation']));
+                    p.append($('<p>').text('Kilométres :'));
+                    p.append($('<p>').text(car['km']));
+                    p.append($('<p>').text('Prix : '));
+                    p.append($('<p>').text(car['prix']));
+                    imgDiv.append(img);
+                    pDiv.append(p);
+                    div.append(imgDiv);
+                    div.append(pDiv);
+                    $('#results').append(div);
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                console.error(textStatus, errorThrown);
+            }
+        });
+    });           
+});
+
+    </script>
+
+
           <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
           <?php
 $host='localhost';
