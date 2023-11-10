@@ -36,85 +36,25 @@
           </div>
          <br>
          
-         <form id="filterForm">
+         <form method="GET" action="./boutique.php" id="filterForm" style='display: flex; justify-content: center;padding-bottom: 50px;'>
     <label for="minPrice">Prix min :</label>
-    <input type="number" id="minPrice" name="minPrice">
+    <input type="number" id="minPrice" name="minPrice" required>
 
     <label for="maxPrice">Prix max :</label>
-    <input type="number" id="maxPrice" name="maxPrice">
+    <input type="number" id="maxPrice" name="maxPrice" required>
 
     <label for="minYear">Année min :</label>
-    <input type="number" id="minYear" name="minYear">
+    <input type="number" id="minYear" name="minYear" required>
 
     <label for="maxKm">Kilomètres max :</label>
-    <input type="number" id="maxKm" name="maxKm">
+    <input type="number" id="maxKm" name="maxKm" required>
 
     <input type="submit" value="Filtrer">
-</form>
-
-<div id="results"></div>
-
-
-    <div id="results"></div>
-
-    <script>
-    $(document).ready(function(){
-    $('#filterForm').on('submit', function(event){ 
-        event.preventDefault();
-        $.ajax({
-            type: "POST", 
-            url: "filtre.php", 
-            data: {
-                minPrice: $('#minPrice').val(),
-                maxPrice: $('#maxPrice').val(),
-                minYear: $('#minYear').val(),
-                maxKm: $('#maxKm').val(),
-            },
-            success: function(result){ 
-                var cars = JSON.parse(result);
-                $('#results').empty();
-                cars.forEach(function(car) {
-                    var div = $('<div>').css({
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center'
-                    });
-                    var imgDiv = $('<div>');
-                    var img = $('<img>').attr('src', './upload/' + car['file']).attr('alt', 'Image').attr('width', '300').attr('height', '250').css({
-                        borderRadius: '50%',
-                        boxShadow: '0px 0px 10px 0px'
-                    });
-                    var pDiv = $('<div>').css('margin-left', '20px');
-                    var p = $('<p>').text('Etat : ');
-                    p.append($('<p>').text(car['ETAT']));
-                    p.append($('<p>').text('Nom : '));
-                    p.append($('<p>').text(car['NOM']));
-                    p.append($('<p>').text('Année : '));
-                    p.append($('<p>').text(car['mise_circulation']));
-                    p.append($('<p>').text('Kilométres :'));
-                    p.append($('<p>').text(car['km']));
-                    p.append($('<p>').text('Prix : '));
-                    p.append($('<p>').text(car['prix']));
-                    imgDiv.append(img);
-                    pDiv.append(p);
-                    div.append(imgDiv);
-                    div.append(pDiv);
-                    $('#results').append(div);
-                });
-            },
-            error: function(jqXHR, textStatus, errorThrown){
-                console.error(textStatus, errorThrown);
-            }
-        });
-    });           
-});
-
-    </script>
-
+</form>   
 
           <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
           <?php
-$host='localhost';
+          $host='localhost';
 $username='root';
 $password='';
 $dbname = "projetgarage";
@@ -124,265 +64,74 @@ if(!$conn)
       die('Could not Connect MySql Server:' .mysql_error());
     }
 
-    $query = "SELECT * FROM voitures where id = 1";
+    $minPrice = isset($_GET['minPrice']) ? filter_var($_GET['minPrice'], FILTER_SANITIZE_NUMBER_INT) : null;
+$maxPrice = isset($_GET['maxPrice']) ? filter_var($_GET['maxPrice'], FILTER_SANITIZE_NUMBER_INT) : null;
+$minYear = isset($_GET['minYear']) ? filter_var($_GET['minYear'], FILTER_SANITIZE_NUMBER_INT) : null;
+$maxKm = isset($_GET['maxKm']) ? filter_var($_GET['maxKm'], FILTER_SANITIZE_NUMBER_INT) : null;
+
+$query = "SELECT * FROM voitures WHERE 1=1";
+if ($minPrice !== null) {
+    $query .= " AND prix >= $minPrice";
+}
+if ($maxPrice !== null) {
+    $query .= " AND prix <= $maxPrice";
+}
+if ($minYear !== null) {
+    $query .= " AND mise_circulation >= $minYear";
+}
+if ($maxKm !== null) {
+    $query .= " AND km <= $maxKm";
+}
+
 $result = mysqli_query($conn, $query);
 
-$query2 = "SELECT * FROM images where id = 1";
-$result2 = mysqli_query($conn, $query2);
-
-if (mysqli_num_rows($result) > 0) {
-  $data = mysqli_fetch_assoc($result);
+while($data = mysqli_fetch_assoc($result)) {
+  $query2 = "SELECT * FROM images where id = ".$data['id'];
+  $result2 = mysqli_query($conn, $query2);
   $image = mysqli_fetch_assoc($result2);
 ?>
 <div style="display: flex; align-items: center;justify-content: center;">
+ <div>
+ <img src="./upload/<?php echo $image['file']; ?>" alt="Image" width="300" height="250" style="border-radius: 50%;
+ box-shadow: 0px 0px 10px 0px;">
+ </div>
+ <div style="margin-left: 20px;">
+  <p>Etat : </p><p><?php echo $data['ETAT']; ?></p><br>
+  <p>Nom : </p><p><?php echo $data['NOM']; ?></p><br>
+  <p>Année : </p><p><?php echo $data['mise_circulation']; ?></p><br>
+  <p>Kilométres :</p><p><?php echo $data['km']; ?></p><br>
+  <p>Prix : </p><p><?php echo $data['prix']; ?></p>
+ </div>
+ <div class="formulaire">
+ <form>
   <div>
-    <img src="./upload/<?php echo $image['file']; ?>" alt="Image" width="300" height="250" style="border-radius: 50%;
-  box-shadow: 0px 0px 10px 0px;">
+   <label for="name">Nom :</label>
+   <input type="text" id="name" name="name" placeholder="Nom" required>
   </div>
-  <div style="margin-left: 20px;">
-    <p>Etat : </p><p><?php echo $data['ETAT']; ?></p><br>
-    <p>Nom : </p><p><?php echo $data['NOM']; ?></p><br>
-    <p>Année : </p><p><?php echo $data['mise_circulation']; ?></p><br>
-    <p>Kilométres :</p><p><?php echo $data['km']; ?></p><br>
-    <p>Prix : </p><p><?php echo $data['prix']; ?></p>
+  <div>
+   <label for="surname">Prénom :</label>
+   <input type="text" id="surname" name="surname" placeholder="Prénom" required>
   </div>
+  <div>
+   <label for="email">Email :</label>
+   <input type="email" id="email" name="email" placeholder="Email" required>
+  </div>
+  <div>
+   <label for="phone">Numéro de téléphone :</label>
+   <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required>
+  </div>
+  <div>
+   <label for="message">Message :</label>
+   <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, j'aimerais davantage de renseignement concernant cette <?php echo $data['NOM']; ?></textarea>
+  </div>
+  <div>
+   <input type="submit" value="Envoyer">
+  </div>
+ </form>
+ </div>
 </div>
 <?php
-} else { ?>
-  <p>No data found</p>
-<?php } ?>
-                    <div class="formulaire">
-                        <form>
-                          <div>
-                            <label for="name">Nom :</label>
-                            <input type="text" id="name" name="name" placeholder="Nom" required>
-                          </div>
-                          <div>
-                            <label for="surname">Prénom :</label>
-                            <input type="text" id="surname" name="surname" placeholder="Prénom" required>
-                          </div>
-                          <div>
-                            <label for="email">Email :</label>
-                            <input type="email" id="email" name="email" placeholder="Email" required>
-                          </div>
-                          <div>
-                            <label for="phone">Numéro de téléphone :</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required>
-                          </div>
-                          <div>
-                            <label for="message">Message :</label>
-                            <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, j'aimerais davantage de renseignement concernant cette Peugeot 3008</textarea>
-                          </div>
-                          <div>
-                            <input type="submit" value="Envoyer">
-                          </div>
-                        </form>
-                      </div>
-                </div>
-                <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
-                <?php
-$host='localhost';
-$username='root';
-$password='';
-$dbname = "projetgarage";
-$conn=mysqli_connect($host,$username,$password,"$dbname");
-if(!$conn)
-    {
-      die('Could not Connect MySql Server:' .mysql_error());
-    }
-
-    $query = "SELECT * FROM voitures where id = 2";
-$result = mysqli_query($conn, $query);
-
-$query2 = "SELECT * FROM images where id = 2";
-$result2 = mysqli_query($conn, $query2);
-
-if (mysqli_num_rows($result) > 0) {
-  $data = mysqli_fetch_assoc($result);
-  $image = mysqli_fetch_assoc($result2);
-?>
-<div style="display: flex; align-items: center;justify-content: center;">
-  <div>
-  <img src="./upload/<?php echo $image['file']; ?>" alt="Image" width="300" height="250" style="border-radius: 50%;
-  box-shadow: 0px 0px 10px 0px;">
-  </div>
-  <div style="margin-left: 20px;">
-    <p>Etat : </p><p><?php echo $data['ETAT']; ?></p><br>
-    <p>Nom : </p><p><?php echo $data['NOM']; ?></p><br>
-    <p>Année : </p><p><?php echo $data['mise_circulation']; ?></p><br>
-    <p>Kilométres :</p><p><?php echo $data['km']; ?></p><br>
-    <p>Prix : </p><p><?php echo $data['prix']; ?></p>
-  </div>
-</div>
-<?php
-} else { ?>
-  <p>No data found</p>
-<?php } ?>
-</div>
-                <div class="formulaire">
-                    <form>
-                      <div>
-                        <label for="name">Nom :</label>
-                        <input type="text" id="name" name="name" placeholder="Nom" required>
-                      </div>
-                      <div>
-                        <label for="surname">Prénom :</label>
-                        <input type="text" id="surname" name="surname" placeholder="Prénom" required>
-                      </div>
-                      <div>
-                        <label for="email">Email :</label>
-                        <input type="email" id="email" name="email" placeholder="Email" required>
-                      </div>
-                      <div>
-                        <label for="phone">Numéro de téléphone :</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required>
-                      </div>
-                      <div>
-                        <label for="message">Message :</label>
-                        <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire"  required>Bonjour, j'aimerais davantage de renseignement concernant cette OPEL MOKKA</textarea>
-                      </div>
-                      <div>
-                        <input type="submit" value="Envoyer">
-                      </div>
-                    </form>
-                  </div>
-            </div>
-            <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
-            <?php
-$host='localhost';
-$username='root';
-$password='';
-$dbname = "projetgarage";
-$conn=mysqli_connect($host,$username,$password,"$dbname");
-if(!$conn)
-    {
-      die('Could not Connect MySql Server:' .mysql_error());
-    }
-
-    $query = "SELECT * FROM voitures where id = 3";
-$result = mysqli_query($conn, $query);
-
-$query2 = "SELECT * FROM images where id = 3";
-$result2 = mysqli_query($conn, $query2);
-
-if (mysqli_num_rows($result) > 0) {
-  $data = mysqli_fetch_assoc($result);
-  $image = mysqli_fetch_assoc($result2);
-?>
-<div style="display: flex; align-items: center;justify-content: center;">
-  <div>
-  <img src="./upload/<?php echo $image['file']; ?>" alt="Image" width="300" height="250" style="border-radius: 50%;
-  box-shadow: 0px 0px 10px 0px;">
-  </div>
-  <div style="margin-left: 20px;">
-    <p>Etat : </p><p><?php echo $data['ETAT']; ?></p><br>
-    <p>Nom : </p><p><?php echo $data['NOM']; ?></p><br>
-    <p>Année : </p><p><?php echo $data['mise_circulation']; ?></p><br>
-    <p>Kilométres :</p><p><?php echo $data['km']; ?></p><br>
-    <p>Prix : </p><p><?php echo $data['prix']; ?></p>
-  </div>
-</div>
-<?php
-} else { ?>
-  <p>No data found</p>
-<?php } ?>
-</div>
-                <div class="formulaire">
-                    <form>
-                      <div>
-                        <label for="name">Nom :</label>
-                        <input type="text" id="name" name="name" placeholder="Nom" required>
-                      </div>
-                      <div>
-                        <label for="surname">Prénom :</label>
-                        <input type="text" id="surname" name="surname" placeholder="Prénom" required>
-                      </div>
-                      <div>
-                        <label for="email">Email :</label>
-                        <input type="email" id="email" name="email" placeholder="Email" required>
-                      </div>
-                      <div>
-                        <label for="phone">Numéro de téléphone :</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required>
-                      </div>
-                      <div>
-                        <label for="message">Message :</label>
-                        <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, j'aimerais davantage de renseignement concernant cette Citroen C3</textarea>
-                      </div>
-                      <div>
-                        <input type="submit" value="Envoyer">
-                      </div>
-                    </form>
-                  </div>
-                  <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
-                  <?php
-$host='localhost';
-$username='root';
-$password='';
-$dbname = "projetgarage";
-$conn=mysqli_connect($host,$username,$password,"$dbname");
-if(!$conn)
-    {
-      die('Could not Connect MySql Server:' .mysql_error());
-    }
-
-    $query = "SELECT * FROM voitures where id = 4";
-$result = mysqli_query($conn, $query);
-
-$query2 = "SELECT * FROM images where id = 4";
-$result2 = mysqli_query($conn, $query2);
-
-if (mysqli_num_rows($result) > 0) {
-  $data = mysqli_fetch_assoc($result);
-  $image = mysqli_fetch_assoc($result2);
-?>
-<div style="display: flex; align-items: center;justify-content: center;">
-  <div>
-  <img src="./upload/<?php echo $image['file']; ?>" alt="Image" width="300" height="250" style="border-radius: 50%;
-  box-shadow: 0px 0px 10px 0px;">
-  </div>
-  <div style="margin-left: 20px;">
-    <p>Etat : </p><p><?php echo $data['ETAT']; ?></p><br>
-    <p>Nom : </p><p><?php echo $data['NOM']; ?></p><br>
-    <p>Année : </p><p><?php echo $data['mise_circulation']; ?></p><br>
-    <p>Kilométres :</p><p><?php echo $data['km']; ?></p><br>
-    <p>Prix : </p><p><?php echo $data['prix']; ?></p>
-  </div>
-</div>
-<?php
-} else { ?>
-  <p>No data found</p>
-<?php } ?>
-</div>
-                <div class="formulaire">
-                    <form>
-                      <div>
-                        <label for="name">Nom :</label>
-                        <input type="text" id="name" name="name" placeholder="Nom" required>
-                      </div>
-                      <div>
-                        <label for="surname">Prénom :</label>
-                        <input type="text" id="surname" name="surname" placeholder="Prénom" required>
-                      </div>
-                      <div>
-                        <label for="email">Email :</label>
-                        <input type="email" id="email" name="email" placeholder="Email" required>
-                      </div>
-                      <div>
-                        <label for="phone">Numéro de téléphone :</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required>
-                      </div>
-                      <div>
-                        <label for="message">Message :</label>
-                        <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, j'aimerais davantage de renseignement concernant cette AUDI Q2</textarea>
-                      </div>
-                      <div>
-                        <input type="submit" value="Envoyer">
-                      </div>
-                    </form>
-                  </div>
-            </div>
-        </div>
+} ?>     
         
         <footer>
           <div class="contact">
@@ -430,6 +179,7 @@ if ($stmt) {
 
           </div>
         </footer>
+
         <script src="script.js"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input type="submit" value="Déconnexion">
+       <input type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;>
      </form>
    <?php
    }
@@ -78,6 +78,7 @@ if (mysqli_num_rows($result) > 0) {
   <td><?php echo $data['mise_circulation']; ?> </td>
   <td><?php echo $data['km']; ?> </td>
   <td><?php echo $data['prix']; ?> </td>
+  <td><a href="delete.php?id=<?php echo $data['id']; ?>">Supprimer</a></td>
 </tr>
 <?php
   }

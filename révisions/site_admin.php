@@ -11,7 +11,12 @@
     <div class="logo">
     <a href="./site_admin.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
     </div>
-    <nav>
+    <nav style="display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+    padding: 30px;
+    font-size: 20px;">
       
         <ul>
           <li><?php
@@ -19,7 +24,7 @@
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input class="deconnexion" type="submit" value="Déconnexion">
+       <input class="deconnexion" type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;>
      </form>
    <?php
    } else {
@@ -30,6 +35,8 @@
    <?php
    }
    ?></li>
+   </ul>
+   <ul></ul>
           <li><a href="./Boutique_admin.php">Boutique</a></li>
           <li><a href="./service_admin.php">Service</a></li>
           <li><a href="./Contact.php">Contact</a></li>
@@ -55,7 +62,7 @@
       </div>
       <div class="formAvis">
         <h2>Laissez un témoignage</h2>
-        <form method="post">
+        <form method="post" action="database.php">
           <label for="nom">Nom:</label>
           <input type="text" id="nom" name="nom" required>
           
@@ -64,16 +71,9 @@
           
           <label for="note">Note:</label>
           <div class="rating">
-            <input type="hidden" id="note" name="note" value="0" />
-            <div class="stars">
-                <label for="star5"><img src="/photo/etoile.png" alt="Étoile vide"></label>
-                <label for="star4"><img src="/photo/etoile.png" alt="Étoile vide"></label>
-                <label for="star3"><img src="/photo/etoile.png" alt="Étoile vide"></label>
-                <label for="star2"><img src="/photo/etoile.png" alt="Étoile vide"></label>
-                <label for="star1"><img src="/photo/etoile.png" alt="Étoile vide"></label>
-            </div>
+<input type="number" id="note" name="note" min="1" max="5">
+
         </div>
-  
           
           <button type="submit" name="submit">Envoyer</button>
         </form>

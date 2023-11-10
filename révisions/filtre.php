@@ -1,35 +1,45 @@
 <?php
-$host='localhost';
+$servername='localhost';
 $username='root';
 $password='';
 $dbname = "projetgarage";
-$conn=mysqli_connect($host,$username,$password,"$dbname");
+$conn = new mysqli($servername, $username, $password, $dbname);
 if(!$conn)
 {
     die('Could not Connect MySql Server:' .mysqli_connect_error());
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $minPrice = $_POST['minPrice'];
-    $maxPrice = $_POST['maxPrice'];
-    $minYear = $_POST['minYear'];
-    $maxKm = $_POST['maxKm'];
+// Récupérez les données du formulaire
+$minPrice = isset($_POST['minPrice']) ? filter_var($_POST['minPrice'], FILTER_SANITIZE_NUMBER_INT) : null;
+$maxPrice = isset($_POST['maxPrice']) ? filter_var($_POST['maxPrice'], FILTER_SANITIZE_NUMBER_INT) : null;
+$minYear = isset($_POST['minYear']) ? filter_var($_POST['minYear'], FILTER_SANITIZE_NUMBER_INT) : null;
+$maxKm = isset($_POST['maxKm']) ? filter_var($_POST['maxKm'], FILTER_SANITIZE_NUMBER_INT) : null;
 
-    // Utilisez ces critères pour filtrer les voitures dans la base de données
-    $sql = "SELECT * FROM voitures WHERE prix BETWEEN $minPrice AND $maxPrice AND mise_circulation >= $minYear AND km <= $maxKm";
-
-    // Exécutez la requête SQL
-    $result = mysqli_query($conn, $sql);
-
-    // Vérifiez si la requête a réussi
-    if ($result) {
-        // Si la requête a réussi, récupérez les résultats et renvoyez-les au client
-        $cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        echo json_encode($cars);
-    } else {
-        // Si la requête a échoué, renvoyez un message d'erreur
-        echo json_encode(array('error' => 'La requête SQL a échoué : ' . mysqli_error($conn)));
-    }
+// Créez la requête SQL
+$query = "SELECT voitures.*, images.file FROM voitures INNER JOIN images ON voitures.id = images.id WHERE 1=1";
+if ($minPrice !== null) {
+    $query .= " AND voitures.prix >= $minPrice";
+}
+if ($maxPrice !== null) {
+    $query .= " AND voitures.prix <= $maxPrice";
+}
+if ($minYear !== null) {
+    $query .= " AND voitures.mise_circulation >= $minYear";
+}
+if ($maxKm !== null) {
+    $query .= " AND voitures.km <= $maxKm";
 }
 
+$result = mysqli_query($conn, $query);
+
+// Générez le tableau de résultats
+$cars = array();
+while($row = $result->fetch_assoc()) {
+  $cars[] = $row;
+}
+
+// Renvoyez le tableau de résultats en tant que réponse JSON
+echo json_encode($cars);
+
+$conn->close();
 ?>

@@ -17,7 +17,7 @@
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input type="submit" value="Déconnexion">
+       <input type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;">
      </form>
    <?php
    }
@@ -31,302 +31,106 @@
     </header>
         <main class="mainBoutique">
           <div class="neufoccas">
-            <p>Véhicule neufs</p>
-            <p>Véhicule occasions</p>
+          <p>Véhicule d'occasions</p>
           </div>
+         <br>
          
-          <div class="Vente">
-            <div class="neuf">
-                <div>
-                    <img src="/photo/peugeot 3008.jpg" alt="voiture">
-                    <div class="para">
-                        <p>
-                            <ul>
-                                <li>Peugeot 3008</li>
-                                <li>2022</li>
-                                <li>0km</li>
-                                <li>51 000€</li>
-                            </ul>
-                        </p>
-                        <p><a href="#" onclick="toggleDescription('description1')">Détails</a></p>
-                        <div class="description" id="description1" style="display: none;">
-                            <span class="close" onclick="toggleDescription('description1')">X</span>
-                            <!-- Contenu de la description -->
-                            <h2>Peugeot 3008</h2>
-                            <p>Caractéristiques <br>
-                                Année :
-                                2022 <br>
-                                Provenance :
-                                Importé  <br>
-                                Mise en circulation :
-                                25/02/2022 <br>
-                                Contrôle technique :
-                                Non requis <br> 
-                                Première main :
-                                Non <br> 
-                                Kilométrage compteur :
-                                0 km <br>
-                                Energie :
-                                Diesel <br>
-                                Boite de vitesse :
-                                Automatique <br>
-                                Couleur :noir <br>
-                                Nombre de portes :
-                                5 </p>
-                            
-                        </div>
-                    </div>
-                    <div class="formulaire">
-                        <form>
-                          <div>
-                            <label for="name">Nom :</label>
-                            <input type="text" id="name" name="name" placeholder="Nom" required>
-                          </div>
-                          <div>
-                            <label for="surname">Prénom :</label>
-                            <input type="text" id="surname" name="surname" placeholder="Prénom" required>
-                          </div>
-                          <div>
-                            <label for="email">Email :</label>
-                            <input type="email" id="email" name="email" placeholder="Email" required>
-                          </div>
-                          <div>
-                            <label for="phone">Numéro de téléphone :</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required>
-                          </div>
-                          <div>
-                            <label for="message">Message :</label>
-                            <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, j'aimerais davantage de renseignement concernant cette Peugeot 3008</textarea>
-                          </div>
-                          <div>
-                            <input type="submit" value="Envoyer">
-                          </div>
-                        </form>
-                      </div>
-                </div>
-                <div>
-                    <img src="/photo/Opel mokka.jpg" alt="voiture">
-                    <div class="para">
-                        <p>
-                            <ul>
-                                <li>OPEL MOKKA</li>
-                                <li>2021</li>
-                                <li>0km</li>
-                                <li>24 000€</li>
-                            </ul>
-                        </p>
-                        <p><a href="#" onclick="toggleDescription('description2')">Détails</a></p>
-                        <div class="description" id="description2" style="display: none;">
-                            <span class="close" onclick="toggleDescription('description2')">X</span>
-                                <!-- Contenu de la description -->
-                            <h2>OPEL MOKKA</h2>
-                            <p>Caractéristiques <br>
-                                Année :
-                                2021 <br>
-                                Provenance :
-                                France <br>
-                                Mise en circulation :
-                                30/11/2021 <br>
-                                Contrôle technique :
-                                Non requis  <br>
-                                Première main :
-                                Non  <br>
-                                Kilométrage compteur :
-                                0 km <br>
-                                Energie :
-                                Diesel <br>
-                                Boite de vitesse :
-                                Manuelle <br>
-                                Couleur :rouge <br>
-                                Nombre de portes :
-                                5 <br>
-                                Nombre de places :
-                                5 <br>
-                                Longueur :
-                                4,15 m <br>
-                                Volume de coffre :
-                                Petit coffre </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="formulaire">
-                    <form>
-                      <div>
-                        <label for="name">Nom :</label>
-                        <input type="text" id="name" name="name" placeholder="Nom" required>
-                      </div>
-                      <div>
-                        <label for="surname">Prénom :</label>
-                        <input type="text" id="surname" name="surname" placeholder="Prénom" required>
-                      </div>
-                      <div>
-                        <label for="email">Email :</label>
-                        <input type="email" id="email" name="email" placeholder="Email" required>
-                      </div>
-                      <div>
-                        <label for="phone">Numéro de téléphone :</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required>
-                      </div>
-                      <div>
-                        <label for="message">Message :</label>
-                        <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire"  required>Bonjour, j'aimerais davantage de renseignement concernant cette OPEL MOKKA</textarea>
-                      </div>
-                      <div>
-                        <input type="submit" value="Envoyer">
-                      </div>
-                    </form>
-                  </div>
-            </div>
-            <div class="occas">
-                <div>
-                    <img src="/photo/citroen.jpg" alt="voiture">
-                    <div class="para">
-                        <p>
-                            <ul>
-                                <li>Citroen C3</li>
-                                <li>2021</li>
-                                <li>25 020km</li>
-                                <li>16 200€</li>
-                            </ul>
-                        </p>
-                        <p><a href="#" onclick="toggleDescription('description3')">Détails</a></p>
-                        <div class="description" id="description3" style="display: none;">
-                            <span class="close" onclick="toggleDescription('description3')">X</span>
-                                <!-- Contenu de la description -->
-                            <h2>Citroen C3</h2>
-                            <p>Caractéristiques <br>
-                                Année :
-                                2021 <br>
-                                Provenance :
-                                France <br>
-                                Mise en circulation :
-                                01/03/2021 <br>
-                                Contrôle technique :
-                                Non requis <br> 
-                                Première main :
-                                Non <br> 
-                                Kilométrage compteur :
-                                25 020 km <br>
-                                Energie :
-                                Essence <br>
-                                Boite de vitesse :
-                                Manuelle <br>
-                                Couleur :blanc/toit rouge <br>
-                                Nombre de portes :
-                                5 <br>
-                                Nombre de places :
-                                5 <br>
-                                Longueur :
-                                4 m <br>
-                                Volume de coffre :
-                                Grand coffre </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="formulaire">
-                    <form>
-                      <div>
-                        <label for="name">Nom :</label>
-                        <input type="text" id="name" name="name" placeholder="Nom" required>
-                      </div>
-                      <div>
-                        <label for="surname">Prénom :</label>
-                        <input type="text" id="surname" name="surname" placeholder="Prénom" required>
-                      </div>
-                      <div>
-                        <label for="email">Email :</label>
-                        <input type="email" id="email" name="email" placeholder="Email" required>
-                      </div>
-                      <div>
-                        <label for="phone">Numéro de téléphone :</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required>
-                      </div>
-                      <div>
-                        <label for="message">Message :</label>
-                        <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, j'aimerais davantage de renseignement concernant cette Citroen C3</textarea>
-                      </div>
-                      <div>
-                        <input type="submit" value="Envoyer">
-                      </div>
-                    </form>
-                  </div>
-                <div>
-                    <img src="/photo/AUDI.jpg" alt="voiture">
-                    <div class="para">
-                        <p>
-                            <ul>
-                                <li>AUDI Q2</li>
-                                <li>2021</li>
-                                <li>14 271km</li>
-                                <li>25 990€</li>
-                            </ul>
-                        </p>
-                        <p><a href="#" onclick="toggleDescription('description4')">Détails</a></p>
-                        <div class="description" id="description4" style="display: none;">
-                            <span class="close" onclick="toggleDescription('description4')">X</span>
-                                <!-- Contenu de la description -->
-                            <h2>AUDI Q2</h2>
-                            <p>Caractéristiques <br>
-                                Année :
-                                2021 <br>
-                                Provenance :
-                                France <br>
-                                Mise en circulation :
-                                15/09/2021 <br>
-                                Contrôle technique :
-                                Non requis <br> 
-                                Première main :
-                                Oui <br> 
-                                Kilométrage compteur :
-                                14 271 km <br>
-                                Energie :
-                                Essence <br>
-                                Boite de vitesse :
-                                Manuelle <br>
-                                Couleur :argent <br>
-                                Nombre de portes :
-                                5 <br>
-                                Nombre de places :
-                                5 <br>
-                                Longueur :
-                                4,21 m <br>
-                                Volume de coffre :
-                                Moyen Coffre </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="formulaire">
-                    <form>
-                      <div>
-                        <label for="name">Nom :</label>
-                        <input type="text" id="name" name="name" placeholder="Nom" required>
-                      </div>
-                      <div>
-                        <label for="surname">Prénom :</label>
-                        <input type="text" id="surname" name="surname" placeholder="Prénom" required>
-                      </div>
-                      <div>
-                        <label for="email">Email :</label>
-                        <input type="email" id="email" name="email" placeholder="Email" required>
-                      </div>
-                      <div>
-                        <label for="phone">Numéro de téléphone :</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required>
-                      </div>
-                      <div>
-                        <label for="message">Message :</label>
-                        <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, j'aimerais davantage de renseignement concernant cette AUDI Q2</textarea>
-                      </div>
-                      <div>
-                        <input type="submit" value="Envoyer">
-                      </div>
-                    </form>
-                  </div>
-            </div>
-        </div>
-        
+         <form method="GET" action="./boutique.php" id="filterForm" style='display: flex; justify-content: center;padding-bottom: 50px;'>
+    <label for="minPrice">Prix min :</label>
+    <input type="number" id="minPrice" name="minPrice" required>
+
+    <label for="maxPrice">Prix max :</label>
+    <input type="number" id="maxPrice" name="maxPrice" required>
+
+    <label for="minYear">Année min :</label>
+    <input type="number" id="minYear" name="minYear" required>
+
+    <label for="maxKm">Kilomètres max :</label>
+    <input type="number" id="maxKm" name="maxKm" required>
+
+    <input type="submit" value="Filtrer">
+</form>   
+
+          <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
+          <?php
+          $host='localhost';
+$username='root';
+$password='';
+$dbname = "projetgarage";
+$conn=mysqli_connect($host,$username,$password,"$dbname");
+if(!$conn)
+    {
+      die('Could not Connect MySql Server:' .mysql_error());
+    }
+
+    $minPrice = isset($_GET['minPrice']) ? filter_var($_GET['minPrice'], FILTER_SANITIZE_NUMBER_INT) : null;
+$maxPrice = isset($_GET['maxPrice']) ? filter_var($_GET['maxPrice'], FILTER_SANITIZE_NUMBER_INT) : null;
+$minYear = isset($_GET['minYear']) ? filter_var($_GET['minYear'], FILTER_SANITIZE_NUMBER_INT) : null;
+$maxKm = isset($_GET['maxKm']) ? filter_var($_GET['maxKm'], FILTER_SANITIZE_NUMBER_INT) : null;
+
+$query = "SELECT * FROM voitures WHERE 1=1";
+if ($minPrice !== null) {
+    $query .= " AND prix >= $minPrice";
+}
+if ($maxPrice !== null) {
+    $query .= " AND prix <= $maxPrice";
+}
+if ($minYear !== null) {
+    $query .= " AND mise_circulation >= $minYear";
+}
+if ($maxKm !== null) {
+    $query .= " AND km <= $maxKm";
+}
+
+$result = mysqli_query($conn, $query);
+
+while($data = mysqli_fetch_assoc($result)) {
+  $query2 = "SELECT * FROM images where id = ".$data['id'];
+  $result2 = mysqli_query($conn, $query2);
+  $image = mysqli_fetch_assoc($result2);
+?>
+<div style="display: flex; align-items: center;justify-content: center;">
+ <div>
+ <img src="./upload/<?php echo $image['file']; ?>" alt="Image" width="300" height="250" style="border-radius: 50%;
+ box-shadow: 0px 0px 10px 0px;">
+ </div>
+ <div style="margin-left: 20px;">
+  <p>Etat : </p><p><?php echo $data['ETAT']; ?></p><br>
+  <p>Nom : </p><p><?php echo $data['NOM']; ?></p><br>
+  <p>Année : </p><p><?php echo $data['mise_circulation']; ?></p><br>
+  <p>Kilométres :</p><p><?php echo $data['km']; ?></p><br>
+  <p>Prix : </p><p><?php echo $data['prix']; ?></p>
+ </div>
+ <div class="formulaire">
+ <form>
+  <div>
+   <label for="name">Nom :</label>
+   <input type="text" id="name" name="name" placeholder="Nom" required>
+  </div>
+  <div>
+   <label for="surname">Prénom :</label>
+   <input type="text" id="surname" name="surname" placeholder="Prénom" required>
+  </div>
+  <div>
+   <label for="email">Email :</label>
+   <input type="email" id="email" name="email" placeholder="Email" required>
+  </div>
+  <div>
+   <label for="phone">Numéro de téléphone :</label>
+   <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required>
+  </div>
+  <div>
+   <label for="message">Message :</label>
+   <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, j'aimerais davantage de renseignement concernant cette <?php echo $data['NOM']; ?></textarea>
+  </div>
+  <div>
+   <input type="submit" value="Envoyer">
+  </div>
+ </form>
+ </div>
+</div>
+<?php
+} ?>
         <footer>
           <div class="contact">
             <p>Contact :</p>
