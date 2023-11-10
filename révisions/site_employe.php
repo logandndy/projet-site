@@ -96,7 +96,7 @@ $result = mysqli_query($conn, $query);
   <th>Message</th>
   <th>Note</th>
   <th>Supprimer</th>
-  <th>Afficher</th>
+  <th>Approuver</th>
  </tr>
 <?php
 // Affichage des avis
@@ -109,7 +109,7 @@ if (mysqli_num_rows($result) > 0) {
   <td><?php echo $data['commentaire']; ?> </td>
   <td><?php echo $data['note']; ?> </td>
   <td><a href="delete.php?id=<?php echo $data['id']; ?>" title='Delete Record'><i class='material-icons'><i class='material-icons'></i></i></a></td>
-  <td><a href="ajouter.php?id=<?php echo $data['id']; ?>" title='Ajouter à site.php'><i class='material-icons'></i></a></td>
+  <td><a href="approuver.php?id=<?php echo $data['id']; ?>" title='Ajouter à site.php'><i class='material-icons'></i></a></td>
 
   <tr>
  <?php

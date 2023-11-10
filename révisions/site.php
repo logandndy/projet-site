@@ -41,7 +41,7 @@
     <main>
       <div class="titre">
         <h1>Garage V.Parrot</h1>
-        <p>(entretien véhicule, vente de véhicule neuf et occasion)</p>
+        <p>(entretien véhicule, vente de véhicule d'occasions)</p>
       </div>
       <div class="proposition">
           <div class="vehicule">
@@ -73,10 +73,6 @@
         </form>
       </div>
       <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
 // Connexion à la base de données
 $hostName = "localhost";
 $userName = "root";
@@ -89,40 +85,62 @@ if ($conn->connect_error) {
  die("Connection failed: " . $conn->connect_error);
 }
 
-// Récupération de l'ID de l'avis à partir de l'URL
-$id = $_GET['id'] ?? null;
+// Requête pour récupérer les avis approuvés
+$query = "SELECT * FROM avis_approuve";
+$result = mysqli_query($conn, $query);
+?>
 
-if ($id !== null) {
-   // Récupération de l'avis à partir de la base de données
-   $query = "SELECT * FROM avis WHERE id = $id";
-   $result = mysqli_query($conn, $query);
-   $data = mysqli_fetch_assoc($result);
-   
-   // Stocker l'avis dans la session
-   $_SESSION['avis'] = $data;
-   
-   // Affichage de l'avis
-   echo "<div class='avis'>";
-   echo "<h2>" . $data['nom'] . "</h2>";
-   echo "<p>" . $data['commentaire'] . "</p>";
-   echo "<p>" . $data['note'] . "</p>";
-   echo "</div>";
+<div class="message-container">
+<?php
+// Affichage des avis approuvés
+if (mysqli_num_rows($result) > 0) {
+ while($data = mysqli_fetch_assoc($result)) {
+ ?>
+ <div class="message-bubble">
+ <p><strong>Nom:</strong></p>
+  <p><?php echo $data['nom']; ?></p>
+  <p><strong>Commentaire:</strong></p>
+  <p><?php echo $data['commentaire']; ?></p>
+  <p><strong>Note:</strong></p>
+  <p><?php echo $data['note']; ?></p>
+ </div>
+ <?php
+ }
 } else {
-   // Récupération de l'avis de la session
-if (isset($_SESSION['avis_visible'])) {
-  $data = $_SESSION['avis_visible'];
-
-  // Affichage de l'avis
-  echo "<div class='avis'>";
-  echo "<h2>" . $data['nom'] . "</h2>";
-  echo "<p>" . $data['commentaire'] . "</p>";
-  echo "<p>" . $data['note'] . "</p>";
-  echo "</div>";
-} else {
-  echo "Aucun avis sélectionné";
-}
+ echo "<p>No data found</p>";
 }
 ?>
+</div>
+
+<?php
+// Fermeture de la connexion
+$conn->close();
+?>
+
+<style>
+.message-container {
+   margin: 0;
+   padding: 0;
+   margin-top: 50px;
+   justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.message-bubble {
+    white-space: nowrap;
+    font-size:1.3em;
+    border: 2px solid black;
+    border-radius: 15px ;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+}
+
+</style>
+
 
     <footer>
       <div class="contact">
