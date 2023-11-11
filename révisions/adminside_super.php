@@ -4,6 +4,24 @@
   <meta charset="UTF-8">
   <title>Garage V.Parrot</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form {
+            width: 45%;
+        }
+        table {
+            width: 45%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
   <header>
@@ -29,75 +47,108 @@
       </ul>
     </nav>
     <main>
-    <div class="contactezNous">
-   <h2>Administration</h2>
+      <div style="display:flex; justify-content: center; margin-top:25px;"><h2 style="font-size: 4em;margin-bottom:50px">Administration</h2></div>
+
+    <div style="display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;">
+    
+ 
+    <div style="display: flex;
+    flex-direction: column;
+    align-items: center;">
+  
    
    <?php
-if (isset($_POST['add_user'])) {
-   $email = $_POST['email'];
-   $password = $_POST['mot_de_passe'];
-   $type_utilisateur = 'employe';
-   $host = 'localhost';
-   $db = 'projetgarage';
-   $user = 'root';
-   $pass = '';
-   $charset = 'utf8mb4';
+    $host = 'localhost';
+    $db = 'projetgarage';
+    $user = 'root';
+    $pass = '';
+    $charset = 'utf8mb4';
 
-   $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-   $opt = [
-     PDO::ATTR_ERRMODE          => PDO::ERRMODE_EXCEPTION,
-     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-     PDO::ATTR_EMULATE_PREPARES => false,
-   ];
-   $pdo = new PDO($dsn, $user, $pass, $opt);
+    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+    $opt = [
+      PDO::ATTR_ERRMODE          => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      PDO::ATTR_EMULATE_PREPARES => false,
+    ];
+    $pdo = new PDO($dsn, $user, $pass, $opt);
 
-   $stmt = $pdo->prepare('INSERT INTO utilisateurs (email, mot_de_passe, type_utilisateur) VALUES (?, ?, ?)');
-   $stmt->execute([$email, $password, $type_utilisateur]);
-}
-?>
+    if (isset($_POST['add_admin'])) {
+       $email = $_POST['email'];
+       $password = $_POST['mot_de_passe'];
+       $type_utilisateur = 'administrateur';
+       $stmt = $pdo->prepare('INSERT INTO utilisateurs (email, mot_de_passe, type_utilisateur) VALUES (?, ?, ?)');
+       $stmt->execute([$email, $password, $type_utilisateur]);
+    }
 
+    if (isset($_GET['delete_admin'])) {
+       $email = $_GET['delete_admin'];
+       $stmt = $pdo->prepare('DELETE FROM utilisateurs WHERE email = ? AND type_utilisateur = "administrateur"');
+       $stmt->execute([$email]);
+    }
 
-   <h3>Ajouter un employé</h3>
-   <form method="post">
-       <label for="email">email:</label><br>
-       <input type="text" id="email" name="email"><br>
-       <label for="mot_de_passe">Mot de passe:</label><br>
-       <input type="password" id="mot_de_passe" name="mot_de_passe"><br>
-       <input type="submit" name="add_user" value="Ajouter un employé">
-   </form>
+    if (isset($_POST['add_user'])) {
+       $email = $_POST['email'];
+       $password = $_POST['mot_de_passe'];
+       $type_utilisateur = 'employe';
+       $stmt = $pdo->prepare('INSERT INTO utilisateurs (email, mot_de_passe, type_utilisateur) VALUES (?, ?, ?)');
+       $stmt->execute([$email, $password, $type_utilisateur]);
+    }
 
-   <h3>Supprimer un employé</h3>
-   <?php
-$host = 'localhost';
-$db = 'projetgarage';
-$user = 'root';
-$pass = '';
-$charset = 'utf8mb4';
+    if (isset($_GET['delete_user'])) {
+       $email = $_GET['delete_user'];
+       $stmt = $pdo->prepare('DELETE FROM utilisateurs WHERE email = ?');
+       $stmt->execute([$email]);
+    }
+    ?>
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$opt = [
-  PDO::ATTR_ERRMODE          => PDO::ERRMODE_EXCEPTION,
-  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-  PDO::ATTR_EMULATE_PREPARES => false,
-];
-$pdo = new PDO($dsn, $user, $pass, $opt);
+    <h3 style="margin-bottom: 20px;">Ajouter un administrateur</h3>
+    <form  style="display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;"method="post">
+        <label for="email">email:</label><br>
+        <input style="margin-bottom: 20px;" type="text" id="email" name="email"><br>
+        <label for="mot_de_passe">Mot de passe:</label><br>
+        <input style="margin-bottom: 20px;" type="password" id="mot_de_passe" name="mot_de_passe"><br>
+        <input style="margin-bottom: 20px;" type="submit" name="add_admin" value="Ajouter un administrateur">
+    </form>
 
-if (isset($_GET['delete_user'])) {
-   $email = $_GET['delete_user'];
-   $stmt = $pdo->prepare('DELETE FROM utilisateurs WHERE email = ?');
-   $stmt->execute([$email]);
-}
+    <h3>Administrateurs</h3>
+    <?php
+    $stmt = $pdo->query('SELECT email FROM utilisateurs WHERE type_utilisateur = "administrateur"');
+    while ($row = $stmt->fetch()) {
+        echo '<a href="adminside.php?delete_admin=' . $row['email'] . '">' . $row['email'] . '</a><br>';
+    }?>
+</div>
+<div style="display: flex;
+    flex-direction: column;
+    align-items: center;">
+    
+    <h3 style="margin-bottom: 20px;">Ajouter un employé</h3>
+    <form style="display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;" method="post">
+        <label for="email">email:</label><br>
+        <input style="margin-bottom: 20px;" type="text" id="email" name="email"><br>
+        <label for="mot_de_passe">Mot de passe:</label><br>
+        <input style="margin-bottom: 20px;" type="password" id="mot_de_passe" name="mot_de_passe"><br>
+        <input style="margin-bottom: 20px;" type="submit" name="add_user" value="Ajouter un employé">
+    </form>
 
-$stmt = $pdo->query('SELECT email FROM utilisateurs WHERE type_utilisateur = "employe"');
+    <h3>Employé</h3>
+    <?php
+    $stmt = $pdo->query('SELECT email FROM utilisateurs WHERE type_utilisateur = "employe"');
 while ($row = $stmt->fetch()) {
     echo '<a href="adminside.php?delete_user=' . $row['email'] . '">' . $row['email'] . '</a><br>';
-}
-?>
-
-
+}    
+    ?>
 </div>
 
-        
+</div>
         
     </main>
     <footer>
