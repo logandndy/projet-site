@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
   
   if ($result) {
-    if ($result["type_utilisateur"] === "administrateur" || $result["type_utilisateur"] === "employe") {
+    if ($result["type_utilisateur"] === "administrateur" || $result["type_utilisateur"] === "employe" || $result["type_utilisateur"] === "super_admin") {
         // Démarrez la session
         session_start();
 
@@ -68,6 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Redirigez vers la page appropriée
         if ($result["type_utilisateur"] === "administrateur") {
             $redirectUrl = "./site_admin.php";
+        } else if ($result["type_utilisateur"] === "super_admin") {
+            $redirectUrl = "./site_super.php";
         } else {
             $redirectUrl = "./site_employe.php";
         }
@@ -79,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 }
+
 
 if (isset($message)) { ?>
   <div id="modal" class="modal">

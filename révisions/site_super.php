@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,14 +8,9 @@
 <body>
   <header>
     <div class="logo">
-    <a href="./site_admin.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
+    <a href="./site_super.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
     </div>
-    <nav style="display: flex;
-    justify-content: space-between;
-    background-color: black;
-    color: white;
-    padding: 30px;
-    font-size: 20px;">
+    <nav>
       
         <ul>
           <li><?php
@@ -24,7 +18,7 @@
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input class="deconnexion" type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;>
+       <input class="deconnexion" type="submit" value="Déconnexion">
      </form>
    <?php
    } else {
@@ -37,10 +31,10 @@
    ?></li>
    </ul>
    <ul></ul>
-          <li><a href="./Boutique_admin.php">Boutique</a></li>
-          <li><a href="./service_admin.php">Service</a></li>
-          <li><a href="./Contact.php">Contact</a></li>
-          <li><a href="./adminside.php">Administration</a></li>
+          <li><a href="./Boutique_super.php">Boutique</a></li>
+          <li><a href="./service_super.php">Service</a></li>
+          <li><a href="./Contact_super.php">Contact</a></li>
+          <li><a href="./adminside_super.php">Administration</a></li>
         </ul>
     </nav>
   </header>
@@ -72,7 +66,6 @@
           <label for="note">Note:</label>
           <div class="rating">
           <input type="number" id="note" name="note" min="1" max="5">
-
         </div>
           
           <button type="submit" name="submit">Envoyer</button>
@@ -91,61 +84,45 @@ if ($conn->connect_error) {
  die("Connection failed: " . $conn->connect_error);
 }
 
-// Requête pour récupérer les avis approuvés
-$query = "SELECT * FROM avis_approuve";
+// Requête pour récupérer les avis
+$query = "SELECT * FROM avis";
 $result = mysqli_query($conn, $query);
 ?>
 
-<div class="message-container">
+<table border ="1" cellspacing="0" cellpadding="10">
+ <tr>
+  <th>ID</th>
+  <th>Nom</th>
+  <th>Message</th>
+  <th>Note</th>
+  <th>Supprimer</th>
+  <th>Approuver</th>
+ </tr>
 <?php
-// Affichage des avis approuvés
+// Affichage des avis
 if (mysqli_num_rows($result) > 0) {
  while($data = mysqli_fetch_assoc($result)) {
  ?>
- <div class="message-bubble">
- <p><strong>Nom:</strong></p>
-  <p><?php echo $data['nom']; ?></p>
-  <p><strong>Commentaire:</strong></p>
-  <p><?php echo $data['commentaire']; ?></p>
-  <p><strong>Note:</strong></p>
-  <p><?php echo $data['note']; ?></p>
- </div>
+ <tr>
+  <td><?php echo $data['id']; ?> </td>
+  <td><?php echo $data['nom']; ?> </td>
+  <td><?php echo $data['commentaire']; ?> </td>
+  <td><?php echo $data['note']; ?> </td>
+  <td><a href="delete.php?id=<?php echo $data['id']; ?>" title='Delete Record'><i class='material-icons'><i class='material-icons'></i></i></a></td>
+  <td><a href="approuver.php?id=<?php echo $data['id']; ?>" title='Ajouter à site.php'><i class='material-icons'></i></a></td>
+
+  <tr>
  <?php
  }
 } else {
- echo "<p>No data found</p>";
+ echo "<tr><td colspan='5'>No data found</td></tr>";
 }
 ?>
-</div>
-
+</table>
 <?php
 // Fermeture de la connexion
 $conn->close();
 ?>
-
-<style>
-.message-container {
-   margin: 0;
-   padding: 0;
-   margin-top: 50px;
-   justify-content: center;
-    display: flex;
-    align-items: center;
-}
-
-.message-bubble {
-    white-space: nowrap;
-    font-size:1.3em;
-    border: 2px solid black;
-    border-radius: 15px ;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 10px;
-}
-
-</style>
     <footer>
       <div class="contact">
         <p>Contact :</p>

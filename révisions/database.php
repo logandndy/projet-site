@@ -23,10 +23,22 @@ $sql = "INSERT INTO Avis (nom, commentaire, note) VALUES ('$nom', '$commentaire'
 
 // Exécuter la requête
 if ($conn->query($sql) === TRUE) {
-    header('Location: site.php');
+    // Récupérez le type d'utilisateur de la session
+    $userType = $_SESSION['utilisateur'];
+
+    // Redirigez en fonction du type d'utilisateur
+    if($userType == 'admin'){
+        header('Location: site_admin.php');
+    } else if($userType == 'employe'){
+        header('Location: site_employe.php');
+    } else {
+        // Ajoutez d'autres conditions pour d'autres types d'utilisateurs si nécessaire
+        echo "Erreur: Type d'utilisateur non reconnu";
+    }
 } else {
  echo "Erreur: " . $sql . "<br>" . $conn->error;
 }
+
 
 // Fermer la connexion
 $conn->close();

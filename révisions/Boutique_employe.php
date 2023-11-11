@@ -17,7 +17,7 @@
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;>
+       <input type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;">
      </form>
    <?php
    }
