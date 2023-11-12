@@ -16,3 +16,8 @@ Pour installer ce projet en local suivez ces étapes :
 - écrire dans le terminale "git clone URL(URL HTTPS)"
 
 #Création d'un administrateur:
+
+- se rendre sur la page de connexion
+- se connecter en tant que super_admin (compte développeur) avec l'email : dondaylogan@gmail.com, mot de passe: Logan
+- allez sur l'onglet administration
+- Il suffit de créer un compte avec un email et un mot de passe afin de créer un autre compte administrateur, comme Mr parrot qui détiens un compte administrateur. A la demande de Mr parrot, nous pouvons créer un autre compte administrateur.

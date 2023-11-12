@@ -42,6 +42,7 @@ nav ul li {
   height: 50px;
   width: 50px;
 }
+
 .titre {
   text-align: center;
   margin-top: 20px;
@@ -103,25 +104,6 @@ nav ul li {
 .formAvis form select,
 .formAvis form button {
   margin-top: 25px;
-}
-.rating {
-  display: flex;
-  justify-content: center;
-}
-
-.rating label {
-  cursor: pointer;
-}
-
-.rating label img {
-  width: 30px;
-  height: 30px;
-  transition: transform 0.2s;
-}
-
-.rating label:hover img,
-.rating input:checked + label img {
-  transform: scale(1.2); /* Agrandit l'image en survol ou sélection */
 }
 
 footer {

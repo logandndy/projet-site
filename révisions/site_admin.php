@@ -58,16 +58,16 @@
             <p>Explorez nos services de pointe au Garage V. Parrot - Votre partenaire automobile de confiance à Toulouse. Avec une équipe d'experts passionnés par leur métier, nous offrons une gamme complète de services de réparation et d'entretien pour garantir la performance et la longévité de votre véhicule. Que ce soit pour la réparation de la carrosserie, la mécanique des voitures ou l'entretien régulier, nous utilisons des techniques de pointe et des équipements de qualité pour vous fournir des résultats exceptionnels. Notre approche personnalisée nous permet de comprendre vos besoins spécifiques et de vous offrir un service adapté à votre voiture. Faites confiance à notre équipe expérimentée pour prendre soin de votre véhicule comme s'il était le nôtre. Découvrez nos services dès aujourd'hui et bénéficiez d'une expérience de service client hors pair.</p><br>
             <a href="./service_admin.php">Découvrir</a>
           </div>
-        </main>
+        
       </div>
       <div class="formAvis">
         <h2>Laissez un témoignage</h2>
         <form method="post" action="database.php">
           <label for="nom">Nom:</label>
-          <input type="text" id="nom" name="nom" required>
+          <input type="text" id="nom" name="nom" >
           
           <label for="commentaire">Commentaire:</label>
-          <textarea id="commentaire" name="commentaire" required></textarea>
+          <textarea id="commentaire" name="commentaire" ></textarea>
           
           <label for="note">Note:</label>
           <div class="rating">
@@ -146,6 +146,7 @@ $conn->close();
 }
 
 </style>
+</main>
     <footer>
       <div class="contact">
         <p>Contact :</p>

@@ -54,34 +54,15 @@ if (isset($_POST['add_user'])) {
    $stmt->execute([$email, $password, $type_utilisateur]);
 }
 
-if (isset($_POST['add_admin'])) {
-   $email = $_POST['email'];
-   $password = $_POST['mot_de_passe'];
-   $type_utilisateur = 'administrateur';
-   $stmt = $pdo->prepare('INSERT INTO utilisateurs (email, mot_de_passe, type_utilisateur) VALUES (?, ?, ?)');
-   $stmt->execute([$email, $password, $type_utilisateur]);
-}
-
 if (isset($_GET['delete_user'])) {
    $email = $_GET['delete_user'];
    $stmt = $pdo->prepare('DELETE FROM utilisateurs WHERE email = ?');
    $stmt->execute([$email]);
 }
 
-if (isset($_GET['delete_admin'])) {
-   $email = $_GET['delete_admin'];
-   $stmt = $pdo->prepare('DELETE FROM utilisateurs WHERE email = ? AND type_utilisateur = "administrateur"');
-   $stmt->execute([$email]);
-}
-
 $stmt = $pdo->query('SELECT email FROM utilisateurs WHERE type_utilisateur = "employe"');
 while ($row = $stmt->fetch()) {
     echo '<a href="adminside.php?delete_user=' . $row['email'] . '">' . $row['email'] . '</a><br>';
-}
-
-$stmt = $pdo->query('SELECT email FROM utilisateurs WHERE type_utilisateur = "administrateur"');
-while ($row = $stmt->fetch()) {
-    echo '<a href="adminside.php?delete_admin=' . $row['email'] . '">' . $row['email'] . '</a><br>';
 }
 ?>
 
@@ -92,15 +73,6 @@ while ($row = $stmt->fetch()) {
     <label for="mot_de_passe">Mot de passe:</label><br>
     <input type="password" id="mot_de_passe" name="mot_de_passe"><br>
     <input type="submit" name="add_user" value="Ajouter un employé">
-</form>
-
-<h3>Ajouter un administrateur</h3>
-<form method="post">
-    <label for="email">email:</label><br>
-    <input type="text" id="email" name="email"><br>
-    <label for="mot_de_passe">Mot de passe:</label><br>
-    <input type="password" id="mot_de_passe" name="mot_de_passe"><br>
-    <input type="submit" name="add_admin" value="Ajouter un administrateur">
 </form>
 
 </div>
