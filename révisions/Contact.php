@@ -22,6 +22,7 @@
    <?php
    }
    ?>
+        <li><a href="./site.php">Accueil</a></li>
         <li><a href="./Boutique.php">Boutique</a></li>
         <li><a href="./service.php">Service</a></li>
         <li><a href="./Contact.php">Contact</a></li>

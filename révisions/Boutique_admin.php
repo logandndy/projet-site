@@ -22,9 +22,10 @@
    <?php
    }
    ?>
+            <li><a href="./site_admin.php">Accueil</a></li>
             <li><a href="./Boutique_admin.php">Boutique</a></li>
             <li><a href="./service_admin.php">Service</a></li>
-            <li><a href="./Contact.php">Contact</a></li>
+            <li><a href="./Contact_admin.php">Contact</a></li>
             <li><a href="./adminside.php">Administration</a></li>
           </ul>
         </nav>
@@ -49,6 +50,7 @@
     <input type="number" id="maxKm" name="maxKm" required>
 
     <input type="submit" value="Filtrer">
+    <input type="reset" value="Clear">
 </form>   
 
           <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">

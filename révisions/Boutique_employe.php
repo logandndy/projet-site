@@ -22,9 +22,10 @@
    <?php
    }
    ?>
+            <li><a href="./site_employe.php">Accueil</a></li>
             <li><a href="./Boutique_employe.php">Boutique</a></li>
-            <li><a href="./service.php">Service</a></li>
-            <li><a href="./Contact.php">Contact</a></li>
+            <li><a href="./service_employe.php">Service</a></li>
+            <li><a href="./Contact_employe.php">Contact</a></li>
           </ul>
         </nav>
     </header>

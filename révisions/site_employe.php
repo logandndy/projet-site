@@ -32,8 +32,8 @@
     <div class="links">
       <ul>
           <li><a href="./Boutique_employe.php">Boutique</a></li>
-          <li><a href="./service.php">Service</a></li>
-          <li><a href="./Contact.php">Contact</a></li>
+          <li><a href="./service_employe.php">Service</a></li>
+          <li><a href="./Contact_employe.php">Contact</a></li>
       </ul>
     </div>
     </nav>
@@ -65,7 +65,7 @@
           
           <label for="note">Note:</label>
           <div class="rating">
-<input type="number" id="note" name="note" min="1" max="5">
+          <input type="number" id="note" name="note" min="1" max="5">
         </div>
           
           <button type="submit" name="submit">Envoyer</button>
@@ -108,7 +108,7 @@ if (mysqli_num_rows($result) > 0) {
   <td><?php echo $data['nom']; ?> </td>
   <td><?php echo $data['commentaire']; ?> </td>
   <td><?php echo $data['note']; ?> </td>
-  <td><a href="delete.php?id=<?php echo $data['id']; ?>" title='Delete Record'><i class='material-icons'><i class='material-icons'></i></i></a></td>
+  <td><a href="delete_avis.php?id=<?php echo $data['id']; ?>" title='Delete Record'><i class='material-icons'><i class='material-icons'></i></i></a></td>
   <td><a href="approuver.php?id=<?php echo $data['id']; ?>" title='Ajouter à site.php'><i class='material-icons'></i></a></td>
 
   <tr>

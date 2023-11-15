@@ -115,27 +115,26 @@ if (mysqli_num_rows($result) > 0) {
 // Fermeture de la connexion
 $conn->close();
 ?>
-
 <style>
-.message-container {
-   margin: 0;
-   padding: 0;
-   margin-top: 50px;
-   justify-content: center;
-    display: flex;
-    align-items: center;
+  .message-container {
+  margin: 0;
+  padding: 0;
+  margin-top: 50px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .message-bubble {
-    white-space: nowrap;
-    font-size:1.3em;
-    border: 2px solid black;
-    border-radius: 15px ;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 10px;
+  white-space: nowrap;
+  font-size: 1.3em;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10px;
 }
 
 </style>

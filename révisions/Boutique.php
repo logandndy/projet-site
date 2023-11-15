@@ -24,6 +24,7 @@
    <?php
    }
    ?>
+            <li><a href="./site.php">Accueil</a></li>
             <li><a href="./Boutique.php">Boutique</a></li>
             <li><a href="./service.php">Service</a></li>
             <li><a href="./Contact.php">Contact</a></li>
@@ -50,6 +51,7 @@
     <input type="number" id="maxKm" name="maxKm" required>
 
     <input type="submit" value="Filtrer">
+    <input type="reset" value="Clear">
 </form>   
 
           <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">

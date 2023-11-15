@@ -18,28 +18,31 @@
     padding: 30px;
     font-size: 20px;">
       
-        <ul>
-          <li><?php
-   session_start();
-   if (isset($_SESSION["utilisateur"])) {
+      <ul>
+ <li>
+   <?php
+     session_start();
+     if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input class="deconnexion" type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;>
+       <input class="deconnexion" type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;">
      </form>
    <?php
-   } else {
+     } else {
    ?>
      <form method="post" action="connexion.php">
        <input class="connexion" type="submit" value="Connexion">
      </form>
    <?php
-   }
-   ?></li>
-   </ul>
+     }
+   ?>
+ </li>
+</ul>
+
    <ul></ul>
           <li><a href="./Boutique_admin.php">Boutique</a></li>
           <li><a href="./service_admin.php">Service</a></li>
-          <li><a href="./Contact.php">Contact</a></li>
+          <li><a href="./Contact_admin.php">Contact</a></li>
           <li><a href="./adminside.php">Administration</a></li>
         </ul>
     </nav>
@@ -198,10 +201,7 @@ if ($stmt) {
 } else {
   echo "Erreur lors de la récupération des données.";
 }
-
 ?>
-
-        
       
       </div>
       

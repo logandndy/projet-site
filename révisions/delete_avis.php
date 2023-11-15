@@ -1,31 +1,29 @@
 <?php
 // Connexion à la base de données
-$servername = "localhost";
-$username = "root";
+$hostName = "localhost";
+$userName = "root";
 $password = "";
-$dbname = "projetgarage";
+$databaseName = "projetgarage";
+$conn = new mysqli($hostName, $userName, $password, $databaseName);
 
-// Créer une connexion
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérifier la connexion
+// Vérification de la connexion
 if ($conn->connect_error) {
  die("Connection failed: " . $conn->connect_error);
 }
 
-// Récupérer l'ID de l'avis à supprimer
-$id = $_POST['id'];
+// Récupération de l'ID de l'avis à partir de l'URL
+$id = $_GET['id'];
 
-// Préparer une requête SQL
+// Requête pour supprimer l'avis
 $sql = "DELETE FROM avis WHERE id=$id";
 
-// Exécuter la requête
+// Exécution de la requête
 if ($conn->query($sql) === TRUE) {
- echo "Avis supprimé avec succès";
+    header('Location: site_employe.php');
 } else {
- echo "Erreur: " . $sql . "<br>" . $conn->error;
+ echo "Error deleting record: " . $conn->error;
 }
 
-// Fermer la connexion
+// Fermeture de la connexion
 $conn->close();
 ?>

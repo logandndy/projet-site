@@ -40,7 +40,7 @@ try {
   echo "Erreur : " . $a->getMessage();
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if (isset($_POST["email"]) && isset($_POST["mot_de_passe"])) {
   $email = $_POST["email"];
   $mdp = $_POST["mot_de_passe"];
   
