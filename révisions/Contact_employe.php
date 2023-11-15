@@ -33,7 +33,7 @@
             <h2>Contactez-nous</h2>
         </div>
         <div class="formulaire">
-          <form>
+          <form action="contactez_form.php" method="POST" >
             <div>
               <label for="name">Nom :</label>
               <input type="text" id="name" name="name" placeholder="Nom" required>
