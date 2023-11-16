@@ -11,23 +11,28 @@
           <a href="./site.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
         </div>
         <nav>
+        <div class="inputs">
           <ul>
           <?php
    session_start();
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;">
+       <input type="submit" value="Déconnexion" style="background-color: black; color: white;">
      </form>
    <?php
    }
    ?>
-            <li><a href="./site_employe.php">Accueil</a></li>
-            <li><a href="./Boutique_employe.php">Boutique</a></li>
-            <li><a href="./service_employe.php">Service</a></li>
-            <li><a href="./Contact_employe.php">Contact</a></li>
+        </div>
+        <div class="links">
+          <ul>
+              <li><a href="./site_employe.php">Accueil</a></li>
+              <li><a href="./Boutique_employe.php">Boutique</a></li>
+              <li><a href="./service_employe.php">Service</a></li>
+              <li><a href="./Contact_employe.php">Contact</a></li>
           </ul>
-        </nav>
+        </div>
+       </nav>
     </header>
         <main class="mainBoutique">
           <div class="neufoccas">

@@ -11,22 +11,26 @@
      <a href="./site.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a> 
     </div>
     <nav>
-      <ul>
-      <?php
+    <div class="inputs">
+        <?php
    session_start();
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input type="submit" value="Déconnexion">
+       <input type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white; " >
      </form>
    <?php
-   }
+   } 
    ?>
-        <li><a href="./site.php">Accueil</a></li>
-        <li><a href="./Boutique.php">Boutique</a></li>
-        <li><a href="./service.php">Service</a></li>
-        <li><a href="./Contact.php">Contact</a></li>
+    </div>
+    <div class="links">
+      <ul>
+          <li><a href="./site.php">Accueil</a></li>
+          <li><a href="./Boutique.php">Boutique</a></li>
+          <li><a href="./service.php">Service</a></li>
+          <li><a href="./Contact.php">Contact</a></li>
       </ul>
+    </div>
     </nav>
     <main>
         <div class="contactezNous">
@@ -71,8 +75,11 @@
       </div>
       <div>
      <?php
+     header('Content-Type: text/html; charset=utf-8');
+
 try {
   $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $pdo->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, "SET NAMES 'utf8'");
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }
