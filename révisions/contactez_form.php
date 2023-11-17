@@ -32,4 +32,6 @@ if ($conn->query($sql) === TRUE) {
 
 // Fermer la connexion
 $conn->close();
+$referer = $_SERVER['HTTP_REFERER'];
+header("Location: $referer");
 ?>

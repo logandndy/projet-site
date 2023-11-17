@@ -11,25 +11,37 @@
      <a href="./site_admin.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a> 
     </div>
     <nav>
-      <ul>
-      <?php
-   session_start();
-   if (isset($_SESSION["utilisateur"])) {
+    <div class="inputs">
+   <?php
+     session_start();
+     if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input type="submit" value="Déconnexion">
+       <input class="deconnexion" type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;">
      </form>
    <?php
-   }
+     } 
    ?>
-        <li><a href="./site_admin.php">Accueil</a></li>
-        <li><a href="./Boutique_admin.php">Boutique</a></li>
-        <li><a href="./service_admin.php">Service</a></li>
-        <li><a href="./Contact_admin.php">Contact</a></li>
-      </ul>
+   </div>
+   <div class="links">
+        <ul>
+          <li><a href="./site_admin.php">Accueil</a></li>
+          <li><a href="./Boutique_admin.php">Boutique</a></li>
+          <li><a href="./service_admin.php">Service</a></li>
+          <li><a href="./Contact_admin.php">Contact</a></li>
+          <li><a href="./adminside.php">Administration</a></li>
+        </ul>
+   </div>
     </nav>
     <main>
-    <div class="contactezNous">
+    <div style="
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
+  padding-top: 20px;
+  flex-direction: column;
+  align-items: center;"
+>
    <h2>Administration</h2>
    
    <?php
@@ -68,7 +80,7 @@ while ($row = $stmt->fetch()) {
 ?>
 
 <h3>Ajouter un employé</h3>
-<form method="post">
+<form method="post" style="display: flex; border: 1px solid black;align-items: center;flex-direction: column;padding:10px">
     <label for="email">email:</label><br>
     <input type="text" id="email" name="email"><br>
     <label for="mot_de_passe">Mot de passe:</label><br>

@@ -11,23 +11,27 @@
           <a href="./site_admin.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
         </div>
         <nav>
-          <ul>
-          <?php
-   session_start();
-   if (isset($_SESSION["utilisateur"])) {
+        <div class="inputs">
+   <?php
+     session_start();
+     if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;">
+       <input class="deconnexion" type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;">
      </form>
    <?php
-   }
+     } 
    ?>
-            <li><a href="./site_admin.php">Accueil</a></li>
-            <li><a href="./Boutique_admin.php">Boutique</a></li>
-            <li><a href="./service_admin.php">Service</a></li>
-            <li><a href="./Contact_admin.php">Contact</a></li>
-            <li><a href="./adminside.php">Administration</a></li>
-          </ul>
+   </div>
+   <div class="links">
+        <ul>
+          <li><a href="./site_admin.php">Accueil</a></li>
+          <li><a href="./Boutique_admin.php">Boutique</a></li>
+          <li><a href="./service_admin.php">Service</a></li>
+          <li><a href="./Contact_admin.php">Contact</a></li>
+          <li><a href="./adminside.php">Administration</a></li>
+        </ul>
+   </div>
         </nav>
     </header>
         <main class="mainBoutique">
@@ -50,7 +54,6 @@
     <input type="number" id="maxKm" name="maxKm" required>
 
     <input type="submit" value="Filtrer">
-    <input type="reset" value="Clear">
 </form>   
 
           <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">

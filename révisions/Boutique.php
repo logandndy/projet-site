@@ -55,7 +55,6 @@
     <input type="number" id="maxKm" name="maxKm" required>
 
     <input type="submit" value="Filtrer">
-    <input type="reset" value="Clear">
 </form>   
 
           <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">

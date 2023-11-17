@@ -11,15 +11,8 @@
     <div class="logo">
     <a href="./site_admin.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
     </div>
-    <nav style="display: flex;
-    justify-content: space-between;
-    background-color: black;
-    color: white;
-    padding: 30px;
-    font-size: 20px;">
-      
-      <ul>
- <li>
+    <nav>
+    <div class="inputs">
    <?php
      session_start();
      if (isset($_SESSION["utilisateur"])) {
@@ -36,15 +29,15 @@
    <?php
      }
    ?>
- </li>
-</ul>
-
-   <ul></ul>
+   </div>
+   <div class="links">
+        <ul>
           <li><a href="./Boutique_admin.php">Boutique</a></li>
           <li><a href="./service_admin.php">Service</a></li>
           <li><a href="./Contact_admin.php">Contact</a></li>
           <li><a href="./adminside.php">Administration</a></li>
         </ul>
+   </div>
     </nav>
   </header>
     <main>

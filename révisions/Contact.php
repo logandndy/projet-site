@@ -75,7 +75,6 @@
       </div>
       <div>
      <?php
-     header('Content-Type: text/html; charset=utf-8');
 
 try {
   $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
