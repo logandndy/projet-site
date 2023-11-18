@@ -30,32 +30,15 @@ if (isset($_SESSION['type_utilisateur'])) {
  
 // Exécuter la requête
 if ($conn->query($sql) === TRUE) {
-    // Vérifier le rôle de l'utilisateur
-    if (isset($_SESSION['type_utilisateur'])) {
-       if ($_SESSION['type_utilisateur'] === 'admin') {
-          // Rediriger vers la page admin
-          header("Location: site_admin.php");
-          echo "Redirection vers site_admin.php";
-       } elseif ($_SESSION['type_utilisateur'] === 'employe') {
-          // Rediriger vers la page employe
-          header("Location: site_employe.php");
-          echo "Redirection vers site_employe.php";
-       } else {
-          // Rediriger vers la page site
-          header("Location: site.php");
-          echo "Redirection vers site.php";
-       }
-    } else {
-       // Rediriger vers la page site
-       header("Location: site.php");
-       echo "Redirection vers site.php";
-    }
-   } else {
-    echo "Erreur: " . $sql . "<br>" . $conn->error;
-   }
-   
+   echo "New record created successfully";
+  } else {
+   echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+  
 
 // Fermer la connexion
 $conn->close();
+$referer = $_SERVER['HTTP_REFERER'];
+header("Location: $referer");
 ?>
 

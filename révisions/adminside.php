@@ -43,6 +43,7 @@
   align-items: center;"
 >
    <h2>Administration</h2>
+   <p>supprimer compte</p>
    
    <?php
 $host = 'localhost';

@@ -47,11 +47,11 @@
       </div>
       <div class="proposition">
           <div class="vehicule">
-            <p>Bienvenue chez Garage V. Parrot - Votre destination de confiance pour l'achat de véhicules d'occasion de qualité à Toulouse ! Forts de notre expertise et de nos 15 années d'expérience, nous proposons une sélection minutieuse de véhicules d'occasion qui répondent aux plus hautes normes de qualité et de fiabilité. Que vous recherchiez une berline élégante, un SUV polyvalent ou une citadine pratique, nous avons le véhicule idéal pour vous. Chaque voiture de notre inventaire est soigneusement inspectée et entretenue, vous offrant ainsi une tranquillité d'esprit absolue. Découvrez notre collection exceptionnelle et trouvez la voiture qui correspond parfaitement à vos besoins et à votre style de vie. Chez Garage V. Parrot, nous nous engageons à vous fournir une expérience d'achat agréable et sans souci, tout en vous offrant un excellent rapport qualité-prix.</p>
+            <p>Bienvenue chez Garage V. Parrot - Votre destination de confiance pour l'achat de véhicules d'occasion de qualité à Toulouse ! Forts de notre expertise et de nos 15 années d'expérience, nous proposons une sélection minutieuse de véhicules d'occasion qui répondent aux plus hautes normes de qualité et de fiabilité.</p>
             <a href="./Boutique_admin.php">Découvrir</a>
           </div>
           <div class="service">
-            <p>Explorez nos services de pointe au Garage V. Parrot - Votre partenaire automobile de confiance à Toulouse. Avec une équipe d'experts passionnés par leur métier, nous offrons une gamme complète de services de réparation et d'entretien pour garantir la performance et la longévité de votre véhicule. Que ce soit pour la réparation de la carrosserie, la mécanique des voitures ou l'entretien régulier, nous utilisons des techniques de pointe et des équipements de qualité pour vous fournir des résultats exceptionnels. Notre approche personnalisée nous permet de comprendre vos besoins spécifiques et de vous offrir un service adapté à votre voiture. Faites confiance à notre équipe expérimentée pour prendre soin de votre véhicule comme s'il était le nôtre. Découvrez nos services dès aujourd'hui et bénéficiez d'une expérience de service client hors pair.</p><br>
+            <p>Explorez nos services. Avec une équipe d'experts passionnés par leur métier, nous offrons une gamme complète de services de réparation et d'entretien pour garantir la performance et la longévité de votre véhicule.</p><br>
             <a href="./service_admin.php">Découvrir</a>
           </div>
         

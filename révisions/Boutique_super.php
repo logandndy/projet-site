@@ -11,7 +11,7 @@
           <a href="./site_super.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
         </div>
         <nav>
-          <ul>
+          <div class="inputs">
           <?php
    session_start();
    if (isset($_SESSION["utilisateur"])) {
@@ -22,11 +22,15 @@
    <?php
    }
    ?>
-            <li><a href="./Boutique_super.php">Boutique</a></li>
+   </div>
+   <div class="links">
+        <ul>
+          <li><a href="./Boutique_super.php">Boutique</a></li>
           <li><a href="./service_super.php">Service</a></li>
           <li><a href="./Contact_super.php">Contact</a></li>
           <li><a href="./adminside_super.php">Administration</a></li>
-          </ul>
+        </ul>
+   </div>
         </nav>
     </header>
         <main class="mainBoutique">
