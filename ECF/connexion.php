@@ -35,7 +35,9 @@
         
         <?php
 try {
-  $mysqlConnection = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $mysqlConnection = new PDO("mysql:host=localhost;dbname=
+  id21587306_vparrot", 'roo
+  id21587306_vparrot', 'Frimous09000!');
 } catch(PDOException $a) {
   echo "Erreur : " . $a->getMessage();
 }

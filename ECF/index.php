@@ -1,4 +1,4 @@
-// Ceci est un commentaire ajouté pour résoudre le problème de déploiement en double
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -74,10 +74,10 @@
       </div>
       <?php
 // Connexion à la base de données
-$hostName = "localhost";
-$userName = "root";
-$password = "";
-$databaseName = "projetgarage";
+$host = 'localhost';
+$db = 'id21587306_garagevparrot';
+$user = 'id21587306_garagevparrot';
+$pass = 'Frimous09000!';
 $conn = new mysqli($hostName, $userName, $password, $databaseName);
 
 // Vérification de la connexion
@@ -128,7 +128,9 @@ $conn->close();
       <div class="Horaires">
       <?php
 try {
-  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $pdo = new PDO("mysql:host=localhost;dbname=
+  id21587306_vparrot", '
+  id21587306_vparrot', 'Frimous09000!');
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }

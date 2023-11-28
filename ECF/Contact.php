@@ -77,7 +77,9 @@
      <?php
 
 try {
-  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $pdo = new PDO("mysql:host=localhost;dbname=
+  id21587306_vparrot", '
+  id21587306_vparrot', 'Frimous09000!');
   $pdo->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, "SET NAMES 'utf8'");
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();

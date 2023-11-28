@@ -59,10 +59,10 @@
 
           <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
           <?php
-          $host='localhost';
-$username='root';
-$password='';
-$dbname = "projetgarage";
+          $host = 'localhost';
+          $db = 'id21587306_garagevparrot';
+          $user = 'id21587306_garagevparrot';
+          $pass = 'Frimous09000!';
 $conn=mysqli_connect($host,$username,$password,"$dbname");
 if(!$conn)
     {
@@ -149,7 +149,9 @@ while($data = mysqli_fetch_assoc($result)) {
           <div>
           <?php
 try {
-  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $pdo = new PDO("mysql:host=localhost;dbname=
+  id21587306_vparrot", '
+  id21587306_vparrot', 'Frimous09000!');
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }

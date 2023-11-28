@@ -1,9 +1,9 @@
 <?php
 // Connexion à la base de données
-$hostName = "localhost";
-$userName = "root";
-$password = "";
-$databaseName = "projetgarage";
+$host = 'localhost';
+$db = 'id21587306_garagevparrot';
+$user = 'id21587306_garagevparrot';
+$pass = 'Frimous09000!';
 $conn = new mysqli($hostName, $userName, $password, $databaseName);
 
 // Vérification de la connexion

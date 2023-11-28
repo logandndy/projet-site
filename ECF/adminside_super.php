@@ -66,9 +66,9 @@
    
    <?php
     $host = 'localhost';
-    $db = 'projetgarage';
-    $user = 'root';
-    $pass = '';
+    $db = 'id21587306_garagevparrot';
+    $user = 'id21587306_garagevparrot';
+    $pass = 'Frimous09000!';
     $charset = 'utf8mb4';
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -166,7 +166,9 @@ while ($row = $stmt->fetch()) {
       <div>
      <?php
 try {
-  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $pdo = new PDO("mysql:host=localhost;dbname=
+  id21587306_vparrot", '
+  id21587306_vparrot', 'Frimous09000!');
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }
