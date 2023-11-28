@@ -1,3 +1,4 @@
+// Ceci est un commentaire ajouté pour résoudre le problème de déploiement en double
 <!DOCTYPE html>
 <html lang="fr">
 <head>
