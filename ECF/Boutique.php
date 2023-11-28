@@ -4,39 +4,40 @@
     <meta charset="UTF-8">
     <title>Boutique</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
     <header>
         <div class="logo">
-          <a href="./site_admin.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
+          <a href="./index.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a>
         </div>
         <nav>
         <div class="inputs">
-   <?php
-     session_start();
-     if (isset($_SESSION["utilisateur"])) {
+        <?php
+   session_start();
+   if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input class="deconnexion" type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white;">
+       <input type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white; " >
      </form>
    <?php
-     } 
+   } 
    ?>
-   </div>
-   <div class="links">
-        <ul>
-          <li><a href="./site_admin.php">Accueil</a></li>
-          <li><a href="./Boutique_admin.php">Boutique</a></li>
-          <li><a href="./service_admin.php">Service</a></li>
-          <li><a href="./Contact_admin.php">Contact</a></li>
-          <li><a href="./adminside.php">Administration</a></li>
-        </ul>
-   </div>
+    </div>
+    <div class="links">
+      <ul>
+          <li><a href="./index.php">Accueil</a></li>
+          <li><a href="./Boutique.php">Boutique</a></li>
+          <li><a href="./service.php">Service</a></li>
+          <li><a href="./Contact.php">Contact</a></li>
+      </ul>
+    </div>
         </nav>
     </header>
         <main class="mainBoutique">
           <div class="neufoccas">
-          <p>Véhicule d'occasions</p>
+            <p>Véhicule d'occasions</p>
           </div>
          <br>
          
@@ -107,7 +108,7 @@ while($data = mysqli_fetch_assoc($result)) {
   <p>Prix : </p><p><?php echo $data['prix']; ?></p>
  </div>
  <div class="formulaire">
- <form>
+ <form action="contactez_form.php" method="POST">
   <div>
    <label for="name">Nom :</label>
    <input type="text" id="name" name="name" placeholder="Nom" required>
@@ -126,7 +127,7 @@ while($data = mysqli_fetch_assoc($result)) {
   </div>
   <div>
    <label for="message">Message :</label>
-   <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, j'aimerais davantage de renseignement concernant cette <?php echo $data['NOM']; ?></textarea>
+   <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, je souhaiterais davantage de renseignement concernant cette <?php echo $data['NOM']; ?></textarea>
   </div>
   <div>
    <input type="submit" value="Envoyer">
@@ -135,7 +136,8 @@ while($data = mysqli_fetch_assoc($result)) {
  </div>
 </div>
 <?php
-} ?>
+} ?>     
+        
         <footer>
           <div class="contact">
             <p>Contact :</p>
@@ -182,6 +184,7 @@ if ($stmt) {
 
           </div>
         </footer>
+
         <script src="script.js"></script>
 </body>
 </html>

@@ -8,37 +8,36 @@
 <body>
   <header>
     <div class="logo">
-     <a href="./site.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a> 
+     <a href="./index.php"><img src="/photo/Capture d'écran 2023-07-18 104210.png" alt="logo"></a> 
     </div>
     <nav>
     <div class="inputs">
-          <ul>
-          <?php
+        <?php
    session_start();
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
-       <input type="submit" value="Déconnexion" style="background-color: black; color: white;">
+       <input type="submit" value="Déconnexion" style="background-color: black; display : flex; color: white; " >
      </form>
    <?php
-   }
+   } 
    ?>
-        </div>
-        <div class="links">
-          <ul>
-              <li><a href="./site_employe.php">Accueil</a></li>
-              <li><a href="./Boutique_employe.php">Boutique</a></li>
-              <li><a href="./service_employe.php">Service</a></li>
-              <li><a href="./Contact_employe.php">Contact</a></li>
-          </ul>
-        </div>
+    </div>
+    <div class="links">
+      <ul>
+          <li><a href="./index.php">Accueil</a></li>
+          <li><a href="./Boutique.php">Boutique</a></li>
+          <li><a href="./service.php">Service</a></li>
+          <li><a href="./Contact.php">Contact</a></li>
+      </ul>
+    </div>
     </nav>
     <main>
         <div class="contactezNous">
             <h2>Contactez-nous</h2>
         </div>
         <div class="formulaire">
-          <form action="contactez_form.php" method="POST" >
+          <form  action="contactez_form.php" method="POST">
             <div>
               <label for="name">Nom :</label>
               <input type="text" id="name" name="name" placeholder="Nom" required>
@@ -76,8 +75,10 @@
       </div>
       <div>
      <?php
+
 try {
   $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $pdo->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, "SET NAMES 'utf8'");
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }

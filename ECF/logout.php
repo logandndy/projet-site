@@ -8,6 +8,6 @@ unset($_SESSION['avis']);
 session_destroy();
 
 // Rediriger vers la page de connexion
-header("Location: site.php");
+header("Location: index.php");
 exit();
 ?>

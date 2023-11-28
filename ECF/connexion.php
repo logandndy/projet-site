@@ -12,7 +12,7 @@
     </div>
     <nav>
       <div>
-        <a href="./site.php">Retour</a>
+        <a href="./index.php">Retour</a>
       </div>
     </nav>
     <main class="mainConnexion">
@@ -77,7 +77,7 @@ if (isset($_POST["email"]) && isset($_POST["mot_de_passe"])) {
         header("Location: " . $redirectUrl);
     } else {
         $message = "Identifiants incorrects.";
-        $redirectUrl = "page_connexion.html"; // Rediriger vers la page de connexion en cas d'échec
+        $redirectUrl = "./connexion.php"; // Rediriger vers la page de connexion en cas d'échec
     }
 }
 }
