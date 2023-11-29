@@ -1,3 +1,6 @@
+<?php
+session_start(); // Démarrer la session avant tout contenu HTML
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
