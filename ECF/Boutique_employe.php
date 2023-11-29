@@ -17,7 +17,6 @@ session_start(); // Démarrer la session avant tout contenu HTML
         <div class="inputs">
           <ul>
           <?php
-   session_start();
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
@@ -45,15 +44,19 @@ session_start(); // Démarrer la session avant tout contenu HTML
           <div class="vente_employe" style="display: flex; flex-direction: column; padding-bottom: 50px;">
 
             <?php
+// Définition des informations de connexion à la base de données
 $host = 'localhost';
 $db = 'id21587306_garagevparrot';
-$user = 'id21587306_garagevparrot';
+$user = 'id21587306_vparrot';
 $pass = 'Frimous09000!';
-$conn=mysqli_connect($host,$username,$password,"$dbname");
-if(!$conn)
-    {
-      die('Could not Connect MySql Server:' .mysql_error());
-    }
+
+// Création de la connexion
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+// Vérification de la connexion
+if (!$conn) {
+   die("Connection failed: " . mysqli_connect_error());
+}
 
     $query = "SELECT * FROM voitures";
 $result = mysqli_query($conn, $query);
@@ -129,9 +132,7 @@ if (mysqli_num_rows($result) > 0) {
           <div>
           <?php
 try {
-  $pdo = new PDO("mysql:host=localhost;dbname=
-  id21587306_vparrot", '
-  id21587306_vparrot', 'Frimous09000!');
+  $pdo = new PDO("mysql:host=localhost;dbname=id21587306_garagevparrot", 'id21587306_vparrot', 'Frimous09000!');
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }

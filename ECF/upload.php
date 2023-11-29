@@ -1,14 +1,17 @@
 <?php
-  // Connexion à la base de données
-  $host = 'localhost';
-  $db = 'id21587306_garagevparrot';
-  $user = 'id21587306_garagevparrot';
-  $pass = 'Frimous09000!';
-  $conn=mysqli_connect($host,$username,$password,"$dbname");
-  if(!$conn)
-      {
-        die('Could not Connect MySql Server:' .mysql_error());
-      }
+ // Connexion à la base de données
+$host = 'localhost';
+$db = 'id21587306_garagevparrot';
+$user = 'id21587306_vparrot';
+$pass = 'Frimous09000!';
+
+// Créer une connexion
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+// Vérifier la connexion
+if (!$conn) {
+  die('Could not Connect MySql Server:' .mysqli_connect_error());
+}
 
   // Vérification et traitement du fichier téléchargé
   $extensions = ['jpg', 'png', 'jpeg', 'gif'];

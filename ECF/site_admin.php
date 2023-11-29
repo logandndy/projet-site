@@ -16,7 +16,6 @@ session_start(); // Démarrer la session avant tout contenu HTML
     <nav>
     <div class="inputs">
    <?php
-     session_start();
      if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
@@ -77,14 +76,16 @@ session_start(); // Démarrer la session avant tout contenu HTML
         </form>
       </div>
       <?php
-// Connexion à la base de données
+// Remplacez ces valeurs par vos propres informations de connexion
 $host = 'localhost';
 $db = 'id21587306_garagevparrot';
-$user = 'id21587306_garagevparrot';
+$user = 'id21587306_vparrot';
 $pass = 'Frimous09000!';
-$conn = new mysqli($hostName, $userName, $password, $databaseName);
 
-// Vérification de la connexion
+// Créer une connexion
+$conn = new mysqli($host, $user, $pass, $db);
+
+// Vérifier la connexion
 if ($conn->connect_error) {
  die("Connection failed: " . $conn->connect_error);
 }
@@ -158,9 +159,7 @@ $conn->close();
       <div>
       <?php
 try {
-  $pdo = new PDO("mysql:host=localhost;dbname=
-  id21587306_vparrot", '
-  id21587306_vparrot', 'Frimous09000!');
+  $pdo = new PDO("mysql:host=localhost;dbname=id21587306_garagevparrot", 'id21587306_vparrot', 'Frimous09000!');
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }

@@ -2,11 +2,11 @@
 // Remplacez ces valeurs par vos propres informations de connexion
 $host = 'localhost';
 $db = 'id21587306_garagevparrot';
-$user = 'id21587306_garagevparrot';
+$user = 'id21587306_vparrot';
 $pass = 'Frimous09000!';
 
 // Créer une connexion
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $user, $pass, $db);
 
 // Vérifier la connexion
 if ($conn->connect_error) {

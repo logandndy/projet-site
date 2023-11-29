@@ -1,13 +1,16 @@
-
 <?php
+// Remplacez ces valeurs par vos propres informations de connexion
 $host = 'localhost';
 $db = 'id21587306_garagevparrot';
-$user = 'id21587306_garagevparrot';
+$user = 'id21587306_vparrot';
 $pass = 'Frimous09000!';
-$conn=mysqli_connect($host,$username,$password,"$dbname");
-if(!$conn)
-{
-    die('Could not Connect MySql Server:' .mysql_error());
+
+// Créer une connexion
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+// Vérifier la connexion
+if (!$conn) {
+   die('Could not Connect MySql Server:' .mysqli_connect_error());
 }
 
 $id = $_GET['id'];

@@ -16,7 +16,6 @@ session_start(); // Démarrer la session avant tout contenu HTML
     <nav>
     <div class="inputs">
           <?php
-   session_start();
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
@@ -79,9 +78,7 @@ session_start(); // Démarrer la session avant tout contenu HTML
       <div>
      <?php
 try {
-  $pdo = new PDO("mysql:host=localhost;dbname=
-  id21587306_vparrot", '
-  id21587306_vparrot', 'Frimous09000!');
+  $pdo = new PDO("mysql:host=localhost;dbname=id21587306_garagevparrot", 'id21587306_vparrot', 'Frimous09000!');
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }
