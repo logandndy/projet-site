@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,7 +17,6 @@
         <div class="inputs">
           <ul>
           <?php
-   session_start();
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">

@@ -127,7 +127,7 @@ while($data = mysqli_fetch_assoc($result)) {
   </div>
   <div>
    <label for="message">Message :</label>
-   <textarea style="width: 700px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, je souhaiterais davantage de renseignement concernant cette <?php echo $data['NOM']; ?></textarea>
+   <textarea style="width: 500px;height: 100px;" id="message" name="message" rows="4" placeholder="Saisissez votre commentaire" required>Bonjour, je souhaiterais davantage de renseignement concernant cette <?php echo $data['NOM']; ?></textarea>
   </div>
   <div>
    <input type="submit" value="Envoyer">
