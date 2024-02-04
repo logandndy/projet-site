@@ -1,3 +1,6 @@
+<?php
+session_start(); // Démarrer la session avant tout contenu HTML
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,7 +16,6 @@
     <nav>
     <div class="inputs">
    <?php
-     session_start();
      if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
@@ -46,18 +48,24 @@
    <p>supprimer compte</p>
    
    <?php
+// Définition des informations de connexion à la base de données
 $host = 'localhost';
-$db = 'projetgarage';
-$user = 'root';
-$pass = '';
+$db = 'id21587306_garagevparrot';
+$user = 'id21587306_vparrot';
+$pass = 'Frimous09000!';
 $charset = 'utf8mb4';
 
+// Création du DSN (Data Source Name)
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+// Définition des options pour PDO
 $opt = [
-  PDO::ATTR_ERRMODE          => PDO::ERRMODE_EXCEPTION,
-  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-  PDO::ATTR_EMULATE_PREPARES => false,
+ PDO::ATTR_ERRMODE         => PDO::ERRMODE_EXCEPTION,
+ PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+ PDO::ATTR_EMULATE_PREPARES => false,
 ];
+
+// Création de l'objet PDO
 $pdo = new PDO($dsn, $user, $pass, $opt);
 
 if (isset($_POST['add_user'])) {
@@ -105,7 +113,7 @@ while ($row = $stmt->fetch()) {
       <div>
      <?php
 try {
-  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $pdo = new PDO("mysql:host=localhost;dbname=id21587306_garagevparrot", 'id21587306_vparrot', 'Frimous09000!');
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }

@@ -1,3 +1,6 @@
+<?php
+session_start(); // Démarrer la session avant tout contenu HTML
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,7 +16,6 @@
     <nav>
     <div class="inputs">
    <?php
-     session_start();
      if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
@@ -41,7 +43,7 @@
             <div class="mesServices">
             <?php
 // Connexion à la base de données
-$db = new PDO('mysql:host=localhost;dbname=projetgarage;charset=utf8', 'root', '');
+$db = new PDO("mysql:host=localhost;dbname=id21587306_garagevparrot", 'id21587306_vparrot', 'Frimous09000!');
 
 // Récupération des services de la base de données
 $services = $db->query('SELECT * FROM services')->fetchAll(PDO::FETCH_ASSOC);
@@ -82,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="horaire">
             <?php
 try {
-  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $pdo = new PDO("mysql:host=localhost;dbname=id21587306_garagevparrot", 'id21587306_vparrot', 'Frimous09000!');
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }
@@ -127,7 +129,7 @@ if ($stmt) {
       <div>
         <?php
       try {
-  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $pdo = new PDO("mysql:host=localhost;dbname=id21587306_garagevparrot", 'id21587306_vparrot', 'Frimous09000!');
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }

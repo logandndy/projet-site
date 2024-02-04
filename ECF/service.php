@@ -1,3 +1,6 @@
+<?php
+session_start(); // Démarrer la session avant tout contenu HTML
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,7 +16,6 @@
     <nav>
     <div class="inputs">
         <?php
-   session_start();
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
@@ -41,7 +43,7 @@
                 <h2>Mes services :</h2><br>
                 <?php
 // Connexion à la base de données
-$db = new PDO('mysql:host=localhost;dbname=projetgarage;charset=utf8', 'root', '');
+$db = new PDO('mysql:host=localhost;dbname=id21587306_garagevparrot;charset=utf8', 'id21587306_vparrot', 'Frimous09000!');
 
 // Récupération des services de la base de données
 $services = $db->query('SELECT * FROM services')->fetchAll(PDO::FETCH_ASSOC);
@@ -56,7 +58,7 @@ foreach ($services as $service) {
             <div class="horaire">
             <?php
 try {
-  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $pdo = new PDO("mysql:host=localhost;dbname=id21587306_garagevparrot", 'id21587306_vparrot', 'Frimous09000!');
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }
@@ -100,11 +102,12 @@ if ($stmt) {
       </div>
       <div>
         <?php
+        
       try {
-  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
-} catch (PDOException $e) {
-  echo "Erreur : " . $e->getMessage();
-}
+        $pdo = new PDO("mysql:host=localhost;dbname=id21587306_garagevparrot",'id21587306_vparrot','Frimous09000!');
+       } catch (PDOException $e) {
+        echo "Erreur : " . $e->getMessage();
+       }
 
 $sql = 'SELECT jour_semaine, heure_matin, heure_matin2, heure_aprem, heure_aprem2 FROM horaires ORDER BY FIELD(jour_semaine, "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche")';
 $stmt = $pdo->query($sql);

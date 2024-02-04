@@ -1,12 +1,16 @@
 <?php
-$servername='localhost';
-$username='root';
-$password='';
-$dbname = "projetgarage";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if(!$conn)
-{
-    die('Could not Connect MySql Server:' .mysqli_connect_error());
+// Remplacez ces valeurs par vos propres informations de connexion
+$host = 'localhost';
+$db = 'id21587306_garagevparrot';
+$user = 'id21587306_vparrot';
+$pass = 'Frimous09000!';
+
+// Créer une connexion
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+// Vérifier la connexion
+if (!$conn) {
+   die('Could not Connect MySql Server:' .mysqli_connect_error());
 }
 
 // Récupérez les données du formulaire

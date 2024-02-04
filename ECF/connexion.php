@@ -1,3 +1,7 @@
+<?php
+ob_start(); // Ajoutez cette ligne au début de votre script
+session_start(); // Démarrer la session avant tout contenu HTML
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -35,7 +39,7 @@
         
         <?php
 try {
-  $mysqlConnection = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $mysqlConnection = new PDO("mysql:host=localhost;dbname=id21587306_garagevparrot", 'id21587306_vparrot', 'Frimous09000!');
 } catch(PDOException $a) {
   echo "Erreur : " . $a->getMessage();
 }
@@ -55,8 +59,6 @@ if (isset($_POST["email"]) && isset($_POST["mot_de_passe"])) {
   
   if ($result) {
     if ($result["type_utilisateur"] === "administrateur" || $result["type_utilisateur"] === "employe" || $result["type_utilisateur"] === "super_admin") {
-        // Démarrez la session
-        session_start();
 
         // Récupérez les informations de connexion de l'utilisateur
    $email = $_POST["email"];

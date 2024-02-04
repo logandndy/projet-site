@@ -1,9 +1,9 @@
 <?php
-$host='localhost';
-$username='root';
-$password='';
-$dbname = "projetgarage";
-$conn=mysqli_connect($host,$username,$password,"$dbname");
+$host = 'localhost';
+$db = 'id21587306_garagevparrot';
+$user = 'id21587306_vparrot';
+$pass = 'Frimous09000!';
+$conn=mysqli_connect($host,$user,$pass,"$db");
 if(!$conn)
 {
     die('Could not Connect MySql Server:' .mysql_error());

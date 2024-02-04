@@ -1,3 +1,6 @@
+<?php
+session_start(); // Démarrer la session avant tout contenu HTML
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,7 +16,6 @@
         <nav>
           <div class="inputs">
           <?php
-   session_start();
    if (isset($_SESSION["utilisateur"])) {
    ?>
      <form method="post" action="logout.php">
@@ -57,15 +59,19 @@
 
           <div class="Vente" style="display: flex; flex-direction: column; align-items: center; align-items:stretch;">
           <?php
-          $host='localhost';
-$username='root';
-$password='';
-$dbname = "projetgarage";
-$conn=mysqli_connect($host,$username,$password,"$dbname");
-if(!$conn)
-    {
-      die('Could not Connect MySql Server:' .mysql_error());
-    }
+          // Définition des informations de connexion à la base de données
+$host = 'localhost';
+$db = 'id21587306_garagevparrot';
+$user = 'id21587306_vparrot';
+$pass = 'Frimous09000!';
+
+// Création de la connexion
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+// Vérification de la connexion
+if (!$conn) {
+   die("Connection failed: " . mysqli_connect_error());
+}
 
     $minPrice = isset($_GET['minPrice']) ? filter_var($_GET['minPrice'], FILTER_SANITIZE_NUMBER_INT) : null;
 $maxPrice = isset($_GET['maxPrice']) ? filter_var($_GET['maxPrice'], FILTER_SANITIZE_NUMBER_INT) : null;
@@ -146,7 +152,7 @@ while($data = mysqli_fetch_assoc($result)) {
           <div>
           <?php
 try {
-  $pdo = new PDO("mysql:host=localhost;dbname=projetgarage", 'root', '');
+  $pdo = new PDO("mysql:host=localhost;dbname=id21587306_garagevparrot", 'id21587306_vparrot', 'Frimous09000!');
 } catch (PDOException $e) {
   echo "Erreur : " . $e->getMessage();
 }
